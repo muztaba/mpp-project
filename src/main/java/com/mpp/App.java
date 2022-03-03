@@ -1,8 +1,10 @@
 package com.mpp;
 
+import com.mpp.controller.AuthenticationController;
 import com.mpp.model.Administrator;
 import com.mpp.model.Role;
 import com.mpp.model.User;
+import com.mpp.utils.ApplicationContext;
 import com.mpp.utils.Command;
 import com.mpp.utils.CommandParser;
 
@@ -36,6 +38,11 @@ public class App {
                     System.exit(0);
                     break;
                 case LOGIN:
+                    System.out.println("Please enter username");
+                    String username = sc.nextLine();
+                    System.out.println("Please enter password");
+                    String password = sc.nextLine();
+                    new AuthenticationController().authenticate(username,password);
                     break;
             }
 
