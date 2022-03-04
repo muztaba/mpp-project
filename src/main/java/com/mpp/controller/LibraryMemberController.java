@@ -1,6 +1,8 @@
 package com.mpp.controller;
 
+import com.mpp.model.Address;
 import com.mpp.model.LibraryMember;
+import com.mpp.repository.RepositoryFactory;
 
 import java.util.UUID;
 
@@ -8,16 +10,17 @@ public class LibraryMemberController {
     public LibraryMember createLibraryMember(
             String firstName,
             String lastName,
-            Integer phoneNumber,
+            Integer phone,
             String street,
             String city,
             String state,
             Integer zip) {
 
-        LibraryMember libraryMember = new LibraryMember(UUID.randomUUID().toString(),
+        LibraryMember libraryMember = new LibraryMember(
+                UUID.randomUUID().toString(),
                 firstName,
                 lastName,
-                phoneNumber,
+                phone,
                 street,
                 city,
                 state,
@@ -31,12 +34,17 @@ public class LibraryMemberController {
             String id,
             String firstName,
             String lastName,
-            Integer phoneNumber,
+            Integer phone,
             String street,
             String city,
             String state,
             Integer zip) {
-        // TODO: call dao and get libraryMember by ID
-        return null;
+        LibraryMember libraryMember = RepositoryFactory.getLibraryMemberRepository().findById(id);
+        libraryMember.setFirstName(firstName);
+        libraryMember.setLastName(lastName);
+        libraryMember.setPhone(phone);
+        libraryMember.setAddress(new Address(street, city, state, zip));
+
+        return RepositoryFactory.getLibraryMemberRepository().save(libraryMember);
     }
 }
