@@ -62,4 +62,16 @@ public class Book implements Identifiable {
     public void setAvailable(Boolean available) {
         isAvailable = available;
     }
+
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "isbn='" + isbn + '\'' +
+                ", title='" + title + '\'' +
+                ", authors=" + authors.toString() +
+                ", copies=" + copies +
+                ", isAvailable=" + isAvailable +
+                '}';
+    }
 }

@@ -46,4 +46,15 @@ public class Person {
     public void setPhone(Integer phone) {
         this.phone = phone;
     }
+
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address=" + address +
+                ", phone=" + phone +
+                '}';
+    }
 }
