@@ -3,7 +3,7 @@ package com.mpp.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Book {
+public class Book implements Identifiable {
     private String isbn;
     private String title;
     private List<Author> authors;
