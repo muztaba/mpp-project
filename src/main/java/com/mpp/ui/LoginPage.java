@@ -44,9 +44,11 @@ public class LoginPage {
                         } catch (InterruptedException interruptedException) {
                             interruptedException.printStackTrace();
                         }
-                        
+
                     }
                 }
+                default -> System.out.println("Wrong Input!");
+
             }
 
         }

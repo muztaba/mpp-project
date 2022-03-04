@@ -10,4 +10,14 @@ public class Author extends Person {
     public void setBio(String bio) {
         this.bio = bio;
     }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address=" + address +
+                ", phone=" + phone +
+                '}';
+    }
 }

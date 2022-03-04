@@ -1,12 +1,11 @@
 package com.mpp.ui;
 
 import com.mpp.controller.AuthenticationController;
+import com.mpp.controller.BookController;
+import com.mpp.controller.ControllerFactory;
 import com.mpp.model.Role;
 import com.mpp.model.User;
-import com.mpp.utils.ApplicationContext;
-import com.mpp.utils.Command;
-import com.mpp.utils.CommandParser;
-import com.mpp.utils.UIContext;
+import com.mpp.utils.*;
 
 import javax.naming.AuthenticationException;
 import java.util.Scanner;
@@ -15,8 +14,7 @@ import java.util.concurrent.TimeUnit;
 public class UserMenu {
 
 
-    public static void showUI(UIContext uiContext) {
-        User user = ApplicationContext.getUser();
+    private static void printDirections(User user) {
         System.out.println("Use the following number list for below");
         if (user.getRoles().contains(Role.ADMIN)) {
             System.out.println(" 1. Add new Book \n 2. Create new Library member \n 3. Edit Library member");
@@ -28,17 +26,29 @@ public class UserMenu {
         }
 
         System.out.println(" 12. Logout");
+    }
+
+
+    public static void showUI(UIContext uiContext) {
+        User user = ApplicationContext.getUser();
+
 
         Scanner sc = uiContext.getSc();
         CommandParser cp = uiContext.getCp();
-
+        printDirections(user);
         while (sc.hasNext()) {
+
             int cmd = Integer.parseInt(sc.nextLine());
 
             //TODO: need connect everything to the UI also make authentication as well
             switch (cmd) {
                 case 1:
-                    break;
+                    try {
+                        AddBook.showUI();
+                    } catch (WrongInput wrongInput) {
+                        wrongInput.printStackTrace();
+                        UserMenu.showUI(uiContext);
+                    }
                 case 2:
                     break;
                 case 3:
@@ -63,10 +73,9 @@ public class UserMenu {
                     System.out.println("Logging out!");
                     ApplicationContext.getAuthenticationConroller().logout();
                     break;
-                default:
-                    System.exit(2);
-            }
 
+            }
+            printDirections(user);
         }
 
 
