@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Book implements Serializable, Identifiable {
-    public static Integer numberOfCopies;
+    public static int numberOfCopies;
     private String id;
     private String isbn;
     private String title;
