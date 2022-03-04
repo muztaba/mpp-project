@@ -30,4 +30,8 @@ public class BookController {
         // RepositoryFactory.getLibraryMemberRepository().save(book);
         return (Book) SerializerFactory.getBookSerializer().serialize(book);
     }
+
+    public Book searchBookByIsbn(String isbn) {
+        return RepositoryFactory.getBookRepository().findById(isbn);
+    }
 }
