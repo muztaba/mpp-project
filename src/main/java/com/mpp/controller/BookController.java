@@ -10,7 +10,7 @@ import com.mpp.validation.ValidatorFactory;
 import java.util.List;
 import java.util.UUID;
 
-public class BookController {
+public class BookController implements DomainController {
 
     public Book addNewBook(String title, String isbn, List<String> authorNames) throws ValidationException {
         // TODO: check if the user has access to this operation
@@ -20,7 +20,7 @@ public class BookController {
         // get Author by author name and add to the book
         for (String authorName : authorNames) {
             // Get AuthorController from ControllerFactory
-            Author author = ControllerFactory.getAuthorController().getAuthorByName(authorName);
+            Author author = ((AuthorController)ControllerFactory.getController(Author.class)).getAuthorByName(authorName);
             book.addAuthor(author);
         }
         // Validate input and handle exception
@@ -28,10 +28,10 @@ public class BookController {
         // TODO: create a book copy for this copy
         // TODO: save the book using BookRepository and return book
         // RepositoryFactory.getLibraryMemberRepository().save(book);
-        return (Book) SerializerFactory.getBookSerializer().serialize(book);
+        return (Book) SerializerFactory.getSerializer(Book.class).serialize(book);
     }
 
     public Book searchBookByIsbn(String isbn) {
-        return RepositoryFactory.getBookRepository().findById(isbn);
+        return (Book) RepositoryFactory.getRepository(Book.class).findById(isbn);
     }
 }

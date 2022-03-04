@@ -6,7 +6,7 @@ import com.mpp.repository.RepositoryFactory;
 
 import java.util.UUID;
 
-public class LibraryMemberController {
+public class LibraryMemberController implements DomainController {
     public LibraryMember createLibraryMember(
             String firstName,
             String lastName,
@@ -26,7 +26,7 @@ public class LibraryMemberController {
                 state,
                 zip);
 
-        return RepositoryFactory.getLibraryMemberRepository().save(libraryMember);
+        return (LibraryMember) RepositoryFactory.getRepository(LibraryMember.class).save(libraryMember);
     }
 
     public LibraryMember editLibraryMember(
@@ -38,16 +38,16 @@ public class LibraryMemberController {
             String city,
             String state,
             Integer zip) {
-        LibraryMember libraryMember = RepositoryFactory.getLibraryMemberRepository().findById(id);
+        LibraryMember libraryMember = (LibraryMember) RepositoryFactory.getRepository(LibraryMember.class).findById(id);
         libraryMember.setFirstName(firstName);
         libraryMember.setLastName(lastName);
         libraryMember.setPhone(phone);
         libraryMember.setAddress(new Address(street, city, state, zip));
 
-        return RepositoryFactory.getLibraryMemberRepository().save(libraryMember);
+        return (LibraryMember) RepositoryFactory.getRepository(LibraryMember.class).save(libraryMember);
     }
 
     public LibraryMember searchMemberByID(String id) {
-        return RepositoryFactory.getLibraryMemberRepository().findById(id);
+        return (LibraryMember) RepositoryFactory.getRepository(LibraryMember.class).findById(id);
     }
 }
