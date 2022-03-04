@@ -35,7 +35,7 @@ public class UserMenu {
         while (sc.hasNext()) {
             int cmd = Integer.parseInt(sc.nextLine());
 
-
+            //TODO: need connect everything to the UI also make authentication as well
             switch (cmd) {
                 case 1:
                     break;
