@@ -20,7 +20,7 @@ public class BookController implements DomainController {
         // get Author by author name and add to the book
         for (String authorName : authorNames) {
             // Get AuthorController from ControllerFactory
-            Author author = ((AuthorController)ControllerFactory.getController(Author.class)).getAuthorByName(authorName);
+            Author author = ((AuthorController) ControllerFactory.getController(Author.class)).getAuthorByName(authorName);
             book.addAuthor(author);
         }
         // Validate input and handle exception
@@ -28,7 +28,7 @@ public class BookController implements DomainController {
         // TODO: create a book copy for this copy
         // TODO: save the book using BookRepository and return book
         // RepositoryFactory.getLibraryMemberRepository().save(book);
-        return (Book) SerializerFactory.getSerializer(Book.class).serialize(book);
+        return (Book) RepositoryFactory.getRepository(Book.class).save(book);
     }
 
     public Book searchBookByIsbn(String isbn) {
