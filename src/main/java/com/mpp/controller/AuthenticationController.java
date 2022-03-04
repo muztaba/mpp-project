@@ -2,11 +2,19 @@ package com.mpp.controller;
 
 import com.mpp.App;
 import com.mpp.model.User;
+import com.mpp.ui.LoginPage;
+import com.mpp.utils.ApplicationContext;
+import com.mpp.utils.UIContext;
 
 import javax.naming.AuthenticationException;
 import java.util.Map;
 
 public class AuthenticationController {
+
+
+    public AuthenticationController(){
+        ApplicationContext.authenticationController = this;
+    }
 
     public User authenticate(String username, String password) throws AuthenticationException {
         for (Map.Entry<String, User> k : App.userMap.entrySet()) {
@@ -17,4 +25,10 @@ public class AuthenticationController {
         }
         throw new AuthenticationException("Failed to login");
     }
+
+    public void logout(){
+        ApplicationContext.setUser(null);
+        LoginPage.showUI(UIContext.getInstance());
+    }
+
 }

@@ -4,9 +4,12 @@ import com.mpp.controller.AuthenticationController;
 import com.mpp.model.Administrator;
 import com.mpp.model.Role;
 import com.mpp.model.User;
+import com.mpp.ui.LoginPage;
+import com.mpp.ui.UserMenu;
 import com.mpp.utils.ApplicationContext;
 import com.mpp.utils.Command;
 import com.mpp.utils.CommandParser;
+import com.mpp.utils.UIContext;
 
 import javax.naming.AuthenticationException;
 import java.util.List;
@@ -19,7 +22,11 @@ public class App {
 
     public static final Map<String, User> userMap = Map.of(
             "123",
-            new Administrator("admin", "admin", List.of(Role.ADMIN, Role.LIBRARIAN))
+            new User("admin", "admin", List.of(Role.ADMIN, Role.LIBRARIAN)),
+            "124",
+            new User("library", "library", List.of(Role.LIBRARIAN)),
+            "125",
+            new User("admin1","admin", List.of(Role.ADMIN))
     );
 
     public static void main(String[] args) {
@@ -30,39 +37,8 @@ public class App {
     public void run() {
         Scanner sc = new Scanner(System.in);
         CommandParser cp = new CommandParser();
-
-        while (sc.hasNext()) {
-            String cmd = sc.nextLine();
-            Command command = cp.parse(cmd);
-
-            switch (command) {
-                case EXIT:
-                    System.out.println("Application exiting...");
-                    System.exit(0);
-                    break;
-                case LOGIN:
-                    System.out.println("Please enter username");
-                    String username = sc.nextLine();
-                    System.out.println("Please enter password");
-                    String password = sc.nextLine();
-                    User user;
-                    try {
-                        user = new AuthenticationController().authenticate(username,password);
-                    } catch (AuthenticationException e) {
-                        e.printStackTrace();
-                        System.out.println("Login failed !");
-                        try {
-                            TimeUnit.SECONDS.sleep(3);
-                        } catch (InterruptedException interruptedException) {
-                            interruptedException.printStackTrace();
-                        }
-                        break;
-                    }
-
-                    break;
-            }
-
-        }
+        UIContext uiContext = UIContext.getInstance(sc,cp);
+        LoginPage.showUI(uiContext);
     }
 
 }
