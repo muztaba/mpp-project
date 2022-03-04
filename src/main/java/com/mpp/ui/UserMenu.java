@@ -50,7 +50,7 @@ public class UserMenu {
                         UserMenu.showUI(uiContext);
                     }
                 case 2:
-                    break;
+                    AddLibraryMember.showUI();
                 case 3:
                     break;
                 case 4:
