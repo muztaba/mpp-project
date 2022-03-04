@@ -1,34 +1,30 @@
 package com.mpp.ui;
 
-import com.mpp.controller.BookController;
+import com.mpp.controller.AuthenticationController;
 import com.mpp.controller.ControllerFactory;
 import com.mpp.controller.LibraryMemberController;
-import com.mpp.model.Book;
+import com.mpp.exception.ValidationException;
 import com.mpp.model.LibraryMember;
 import com.mpp.model.Role;
 import com.mpp.utils.ApplicationContext;
 import com.mpp.utils.UIContext;
-import com.mpp.utils.Validator;
-import com.mpp.utils.WrongInput;
 
 import java.nio.file.AccessDeniedException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class AddLibraryMember {
 
 
-    public static void showUI() {
+    public static void showUI() throws NumberFormatException, ValidationException {
         try {
-            ApplicationContext.getAuthenticationConroller().hasPermission(ApplicationContext.getUser(), Role.ADMIN);
+            ((AuthenticationController)ControllerFactory.getController(AuthenticationController.class)).hasPermission(ApplicationContext.getUser(), Role.ADMIN);
         } catch (AccessDeniedException e) {
             e.printStackTrace();
             System.out.println("Access Denied! You have no Power Here!");
             UserMenu.showUI(UIContext.getInstance());
         }
 
-        LibraryMemberController libraryMemberController = ControllerFactory.getLibraryMemberController();
+        LibraryMemberController libraryMemberController = (LibraryMemberController) ControllerFactory.getController(LibraryMember.class);
         System.out.println("Please enter first Name");
         Scanner sc = UIContext.getInstance().getSc();
         String fname = sc.nextLine();

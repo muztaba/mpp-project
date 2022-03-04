@@ -1,8 +1,10 @@
 package com.mpp.controller;
 
+import com.mpp.exception.ValidationException;
 import com.mpp.model.Address;
 import com.mpp.model.LibraryMember;
 import com.mpp.repository.RepositoryFactory;
+import com.mpp.validation.ValidatorFactory;
 
 import java.util.UUID;
 
@@ -14,7 +16,7 @@ public class LibraryMemberController implements DomainController {
             String street,
             String city,
             String state,
-            Integer zip) {
+            Integer zip) throws ValidationException {
 
         LibraryMember libraryMember = new LibraryMember(
                 UUID.randomUUID().toString(),
@@ -25,7 +27,7 @@ public class LibraryMemberController implements DomainController {
                 city,
                 state,
                 zip);
-
+        ValidatorFactory.getValidator(LibraryMember.class).validate(libraryMember);
         return (LibraryMember) RepositoryFactory.getRepository(LibraryMember.class).save(libraryMember);
     }
 

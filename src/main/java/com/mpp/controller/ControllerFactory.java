@@ -12,6 +12,7 @@ public final class ControllerFactory {
         put(Book.class, new BookController());
         put(LibraryMember.class, new LibraryMemberController());
         put(Author.class, new AuthorController());
+        put(AuthenticationController.class, new AuthenticationController());
     }};
 
     private ControllerFactory() {
