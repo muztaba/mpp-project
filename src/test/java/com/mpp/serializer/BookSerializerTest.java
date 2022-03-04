@@ -8,8 +8,10 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.util.List;
-import java.util.Map;
+import java.security.SecureRandom;
+import java.util.*;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class BookSerializerTest {
 
@@ -33,11 +35,11 @@ class BookSerializerTest {
         // then
         var actualMap = (Map<String, Book>) bookSerializer.deserialize();
 
-        Assertions.assertThat(actualMap).isNotNull();
-        Assertions.assertThat(map.get(book.getID())).isNotNull();
+        assertThat(actualMap).isNotNull();
+        assertThat(map.get(book.getID())).isNotNull();
 
         Book actual = map.get(book.getID());
-        Assertions.assertThat(actual.getAuthors().get(0).getFirstName())
+        assertThat(actual.getAuthors().get(0).getFirstName())
                 .isEqualTo(book.getAuthors().get(0).getFirstName());
     }
 
@@ -45,15 +47,42 @@ class BookSerializerTest {
     public void whenFileNotFound() {
         BookSerializer bookSerializer = SerializerFactory.bookSerializer(fileName);
         Object deserialize = bookSerializer.deserialize();
-        Assertions.assertThat(deserialize).isNull();
+        assertThat(deserialize).isNull();
+    }
+
+    @Test
+    public void appendTest() {
+        // setup
+        var serializer = new BookSerializer("book_test.bin");
+
+        var b1 = createBook();
+        var map = new HashMap<>();
+        map.put(b1.getID(), b1);
+        serializer.serialize(map);
+
+        var b2 = createBook();
+        map.put(b2.getID(), b2);
+        serializer.serialize(map);
+
+        var actual = (Map<String, Book>) serializer.deserialize();
+
+        assertThat(actual.get(b2.getID())).isNotNull();
+        assertThat(actual.get(b1.getID())).isNotNull();
+
+        var actualB2 = actual.get(b2.getID());
+
+        assertThat(actualB2.getID()).isEqualTo(b2.getID());
+        assertThat(actualB2.getAuthors().get(0).getFirstName())
+                .isEqualTo(b2.getAuthors().get(0).getFirstName());
     }
 
     Book createBook() {
-        Book book = new Book("123", "Book Title", "isbn");
+        String rand = String.valueOf(new Random().nextInt());
+        Book book = new Book("123" + rand, "Book Title", "isbn");
 
         Author author = new Author();
         author.setId("890");
-        author.setFirstName("firstName");
+        author.setFirstName("firstName" + rand);
 
         BookCopy bookCopy = new BookCopy();
 
