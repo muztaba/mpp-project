@@ -26,7 +26,7 @@ public class BookController {
             Author author = ControllerFactory.getAuthorController().getAuthorByName(authorName);
             book.addAuthor(author);
         }
-        // TODO: save the book using BookSerializer and return book
+        // TODO: save the book using BookRepository and return book
         // RepositoryFactory.getLibraryMemberRepository().save(book);
         return (Book) SerializerFactory.getBookSerializer().serialize(book);
     }

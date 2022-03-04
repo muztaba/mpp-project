@@ -26,4 +26,17 @@ public class LibraryMemberController {
         // TODO: call dao to save
         return libraryMember;
     }
+
+    public LibraryMember editLibraryMember(
+            String id,
+            String firstName,
+            String lastName,
+            Integer phoneNumber,
+            String street,
+            String city,
+            String state,
+            Integer zip) {
+        // TODO: call dao and get libraryMember by ID
+        return null;
+    }
 }
