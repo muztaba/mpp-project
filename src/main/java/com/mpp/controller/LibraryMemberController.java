@@ -47,4 +47,8 @@ public class LibraryMemberController {
 
         return RepositoryFactory.getLibraryMemberRepository().save(libraryMember);
     }
+
+    public LibraryMember searchMemberByID(String id) {
+        return RepositoryFactory.getLibraryMemberRepository().findById(id);
+    }
 }
