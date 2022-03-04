@@ -74,4 +74,9 @@ public class Book implements Identifiable {
                 ", isAvailable=" + isAvailable +
                 '}';
     }
+
+    @Override
+    public String getID() {
+        return null;
+    }
 }

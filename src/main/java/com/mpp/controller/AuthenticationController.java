@@ -33,7 +33,7 @@ public class AuthenticationController {
         LoginPage.showUI(UIContext.getInstance());
     }
 
-    public void hasPermissioon(User user, Role role) throws AccessDeniedException {
+    public void hasPermission(User user, Role role) throws AccessDeniedException {
         boolean flag = user.getRoles().contains(role);
         if (!flag) throw new AccessDeniedException("You have no access here!");
     }
