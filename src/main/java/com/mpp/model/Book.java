@@ -1,9 +1,10 @@
 package com.mpp.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Book implements Identifiable {
+public class Book implements Serializable, Identifiable {
     private String isbn;
     private String title;
     private List<Author> authors;
@@ -11,8 +12,8 @@ public class Book implements Identifiable {
     private Boolean isAvailable;
 
     public Book() {
-        authors = new ArrayList<Author>();
-        copies = new ArrayList<BookCopy>();
+        authors = new ArrayList<>();
+        copies = new ArrayList<>();
     }
 
     public void addAuthor(Author author) {
@@ -63,6 +64,10 @@ public class Book implements Identifiable {
         isAvailable = available;
     }
 
+    @Override
+    public String getID() {
+        return isbn;
+    }
 
     @Override
     public String toString() {

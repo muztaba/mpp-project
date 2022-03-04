@@ -1,20 +1,39 @@
 package com.mpp.repository;
 
-import com.mpp.model.Book;
 import com.mpp.model.LibraryMember;
-import com.mpp.serializer.BookSerializer;
+import com.mpp.serializer.SerializerFactory;
 
 final public class RepositoryFactory {
 
     private RepositoryFactory() {
     }
 
-    public static Repository<LibraryMember> getLibraryMemberRepository() {
-        return new LibraryMemberRepository(new BookSerializer());
+    private static LibraryMemberRepository libraryMemberRepository;
+    private static BookRepository bookRepository;
+    private static AuthorRepository authorRepository;
+
+    public static LibraryMemberRepository libraryMemberRepository() {
+        if (libraryMemberRepository == null) {
+            libraryMemberRepository = new LibraryMemberRepository(SerializerFactory.libraryMemberSerializer("libraryMember.bin"));
+        }
+
+        return libraryMemberRepository;
     }
 
-    public static Repository<Book> getBookRepository() {
-        return new BookRepository(new BookSerializer());
+    public static BookRepository bookRepository() {
+        if (bookRepository == null) {
+            bookRepository = new BookRepository(SerializerFactory.bookSerializer("book.bin"));
+        }
+
+        return bookRepository;
+    }
+
+    public static AuthorRepository authorRepository() {
+        if (authorRepository == null) {
+            authorRepository = new AuthorRepository(SerializerFactory.authorSerializer("author.bin"));
+        }
+
+        return authorRepository;
     }
 
 }

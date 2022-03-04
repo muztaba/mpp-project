@@ -12,14 +12,14 @@ abstract public class Repository<T extends Identifiable> {
     private final ISerializer serializer;
     private final Map<String, T> map;
 
-    public Repository(ISerializer serializer) {
+    public Repository(ISerializer serializer, Map<String, T> map) {
         this.serializer = serializer;
-        this.map = new HashMap<>();
+        this.map = (map == null) ? new HashMap<>() : map;
     }
 
     public T save(T t) {
         map.put(t.getID(), t);
-        serializer.serialize(t);
+        serializer.serialize(map);
         return t;
     }
 

@@ -1,6 +1,6 @@
 package com.mpp.controller;
 
-import com.mpp.model.LibraryMember;
+import com.mpp.repository.RepositoryFactory;
 
 public final class ControllerFactory {
     private static BookController bookController;
@@ -11,19 +11,21 @@ public final class ControllerFactory {
 
     public static BookController getBookController() {
         if (bookController == null) {
-            bookController = new BookController();
+            bookController = new BookController(RepositoryFactory.bookRepository());
         }
         return bookController;
     }
+
     public static AuthorController getAuthorController() {
         if (authorController == null) {
-            authorController = new AuthorController();
+            authorController = new AuthorController(RepositoryFactory.authorRepository());
         }
         return authorController;
     }
+
     public static LibraryMemberController getLibraryMemberController() {
         if (libraryMemberController == null) {
-            libraryMemberController = new LibraryMemberController();
+            libraryMemberController = new LibraryMemberController(RepositoryFactory.libraryMemberRepository());
         }
         return libraryMemberController;
     }

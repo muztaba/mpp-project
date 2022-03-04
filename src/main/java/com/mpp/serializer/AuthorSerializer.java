@@ -1,10 +1,10 @@
 package com.mpp.serializer;
 
-public class BookSerializer extends Serializer {
+public class AuthorSerializer extends Serializer {
 
     private final String fileName;
 
-    public BookSerializer(String fileName) {
+    public AuthorSerializer(String fileName) {
         this.fileName = fileName;
     }
 

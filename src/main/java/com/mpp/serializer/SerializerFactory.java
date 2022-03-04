@@ -5,10 +5,18 @@ public final class SerializerFactory {
 
     private SerializerFactory() {}
 
-    public static BookSerializer getBookSerializer() {
+    public static BookSerializer bookSerializer(String fileName) {
         if (bookSerializer == null) {
-            bookSerializer = new BookSerializer();
+            bookSerializer = new BookSerializer(fileName);
         }
         return bookSerializer;
+    }
+
+    public static LibraryMemberSerializer libraryMemberSerializer(String fileName) {
+        return new LibraryMemberSerializer(fileName);
+    }
+
+    public static ISerializer authorSerializer(String fileName) {
+        return new AuthorSerializer(fileName);
     }
 }
