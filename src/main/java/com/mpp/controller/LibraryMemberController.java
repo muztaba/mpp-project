@@ -3,12 +3,19 @@ package com.mpp.controller;
 import com.mpp.exception.ValidationException;
 import com.mpp.model.Address;
 import com.mpp.model.LibraryMember;
+import com.mpp.repository.LibraryMemberRepository;
 import com.mpp.repository.RepositoryFactory;
 import com.mpp.validation.ValidatorFactory;
 
 import java.util.UUID;
 
 public class LibraryMemberController implements DomainController {
+    private final LibraryMemberRepository libraryMemberRepository;
+
+    public LibraryMemberController(LibraryMemberRepository libraryMemberRepository) {
+        this.libraryMemberRepository = libraryMemberRepository;
+    }
+
     public LibraryMember createLibraryMember(
             String firstName,
             String lastName,
@@ -28,7 +35,7 @@ public class LibraryMemberController implements DomainController {
                 state,
                 zip);
         ValidatorFactory.getValidator(LibraryMember.class).validate(libraryMember);
-        return (LibraryMember) RepositoryFactory.getRepository(LibraryMember.class).save(libraryMember);
+        return libraryMember;
     }
 
     public LibraryMember editLibraryMember(
@@ -40,16 +47,16 @@ public class LibraryMemberController implements DomainController {
             String city,
             String state,
             Integer zip) {
-        LibraryMember libraryMember = (LibraryMember) RepositoryFactory.getRepository(LibraryMember.class).findById(id);
+        LibraryMember libraryMember = libraryMemberRepository.findById(id);
         libraryMember.setFirstName(firstName);
         libraryMember.setLastName(lastName);
         libraryMember.setPhone(phone);
         libraryMember.setAddress(new Address(street, city, state, zip));
 
-        return (LibraryMember) RepositoryFactory.getRepository(LibraryMember.class).save(libraryMember);
+        return libraryMemberRepository.save(libraryMember);
     }
 
     public LibraryMember searchMemberByID(String id) {
-        return (LibraryMember) RepositoryFactory.getRepository(LibraryMember.class).findById(id);
+        return libraryMemberRepository.findById(id);
     }
 }
