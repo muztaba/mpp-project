@@ -3,7 +3,7 @@ package com.mpp.controller;
 import com.mpp.model.Author;
 import com.mpp.repository.AuthorRepository;
 
-public class AuthorController {
+public class AuthorController implements DomainController {
 
     public AuthorController(AuthorRepository authorRepository) {
         this.authorRepository = authorRepository;

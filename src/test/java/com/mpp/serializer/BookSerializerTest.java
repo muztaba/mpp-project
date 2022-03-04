@@ -49,9 +49,7 @@ class BookSerializerTest {
     }
 
     Book createBook() {
-        Book book = new Book();
-        book.setIsbn("123");
-        book.setTitle("Book Title");
+        Book book = new Book("123", "Book Title", "isbn");
 
         Author author = new Author();
         author.setId("890");
