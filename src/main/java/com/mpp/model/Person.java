@@ -1,6 +1,8 @@
 package com.mpp.model;
 
-public class Person  implements Identifiable {
+import java.io.Serializable;
+
+public class Person implements Serializable, Identifiable {
     protected String id;
     protected String firstName;
     protected String lastName;

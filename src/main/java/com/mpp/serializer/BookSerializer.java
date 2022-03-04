@@ -1,9 +1,15 @@
 package com.mpp.serializer;
 
-public class BookSerializer implements ISerializer {
+public class BookSerializer extends Serializer {
+
+    private final String fileName;
+
+    public BookSerializer(String fileName) {
+        this.fileName = fileName;
+    }
+
     @Override
-    public Object serialize(Object obj) {
-        // TODO: implement
-        return null;
+    String getFileName() {
+        return fileName;
     }
 }

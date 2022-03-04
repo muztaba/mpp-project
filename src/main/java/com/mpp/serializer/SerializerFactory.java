@@ -8,16 +8,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class SerializerFactory {
-    static Map<Class<? extends Object>, ISerializer> serializerMap = new HashMap<Class<? extends Object>, ISerializer>() {{
-        put(Book.class, new BookSerializer());
-        put(LibraryMember.class, new LibraryMemberSerializer());
-        put(Author.class, new AuthorSerializer());
-    }};
+    private static BookSerializer bookSerializer;
 
-    private SerializerFactory() {
+    private SerializerFactory() {}
+
+    public static BookSerializer bookSerializer(String fileName) {
+        if (bookSerializer == null) {
+            bookSerializer = new BookSerializer(fileName);
+        }
+        return bookSerializer;
     }
 
-    public static ISerializer getSerializer(Class<? extends Object> clazz) {
-        return serializerMap.get(clazz);
+    public static LibraryMemberSerializer libraryMemberSerializer(String fileName) {
+        return new LibraryMemberSerializer(fileName);
     }
+
+    public static ISerializer authorSerializer(String fileName) {
+        return new AuthorSerializer(fileName);
+    }
+
 }

@@ -1,4 +1,6 @@
 package com.mpp.model;
 
-public class BookCopy {
+import java.io.Serializable;
+
+public class BookCopy implements Serializable {
 }

@@ -1,10 +1,10 @@
 package com.mpp.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Book implements Identifiable {
-    // TODO: add id and generate uuid while creating a book
+public class Book implements Serializable, Identifiable {
     private String id;
     private String isbn;
     private String title;
@@ -16,8 +16,8 @@ public class Book implements Identifiable {
         this.id = id;
         this.title = title;
         this.isbn = isbn;
-        authors = new ArrayList<Author>();
-        copies = new ArrayList<BookCopy>();
+        authors = new ArrayList<>();
+        copies = new ArrayList<>();
     }
 
     public void addAuthor(Author author) {

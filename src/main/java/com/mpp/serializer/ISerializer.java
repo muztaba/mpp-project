@@ -1,5 +1,7 @@
 package com.mpp.serializer;
 
 public interface ISerializer {
-    Object serialize(Object obj);
+    void serialize(Object obj);
+
+    Object deserialize();
 }

@@ -1,22 +1,14 @@
 package com.mpp;
 
-import com.mpp.controller.AuthenticationController;
-import com.mpp.model.Administrator;
 import com.mpp.model.Role;
 import com.mpp.model.User;
 import com.mpp.ui.LoginPage;
-import com.mpp.ui.UserMenu;
-import com.mpp.utils.ApplicationContext;
-import com.mpp.utils.Command;
 import com.mpp.utils.CommandParser;
 import com.mpp.utils.UIContext;
 
-import javax.naming.AuthenticationException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.Timer;
-import java.util.concurrent.TimeUnit;
 
 public class App {
 
