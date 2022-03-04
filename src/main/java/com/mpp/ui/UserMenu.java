@@ -3,7 +3,6 @@ package com.mpp.ui;
 import com.mpp.controller.AuthenticationController;
 import com.mpp.controller.BookController;
 import com.mpp.controller.ControllerFactory;
-import com.mpp.exception.ValidationException;
 import com.mpp.model.Role;
 import com.mpp.model.User;
 import com.mpp.utils.*;
@@ -46,17 +45,12 @@ public class UserMenu {
                 case 1:
                     try {
                         AddBook.showUI();
-                    } catch (ValidationException wrongInput) {
+                    } catch (WrongInput wrongInput) {
                         wrongInput.printStackTrace();
                         UserMenu.showUI(uiContext);
                     }
                 case 2:
-                    try {
-                        AddLibraryMember.showUI();
-                    } catch (ValidationException | NumberFormatException wrongInput) {
-                        wrongInput.printStackTrace();
-                        UserMenu.showUI(uiContext);
-                    }
+                    AddLibraryMember.showUI();
                 case 3:
                     break;
                 case 4:
