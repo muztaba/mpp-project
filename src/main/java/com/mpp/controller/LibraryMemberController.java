@@ -26,8 +26,7 @@ public class LibraryMemberController {
                 state,
                 zip);
 
-        // TODO: call dao to save
-        return libraryMember;
+        return RepositoryFactory.getLibraryMemberRepository().save(libraryMember);
     }
 
     public LibraryMember editLibraryMember(

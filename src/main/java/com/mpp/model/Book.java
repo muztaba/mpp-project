@@ -4,13 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Book implements Identifiable {
+    // TODO: add id and generate uuid while creating a book
+    private String id;
     private String isbn;
     private String title;
     private List<Author> authors;
     private List<BookCopy> copies;
     private Boolean isAvailable;
 
-    public Book() {
+    public Book(String id, String title, String isbn) {
+        this.id = id;
+        this.title = title;
+        this.isbn = isbn;
         authors = new ArrayList<Author>();
         copies = new ArrayList<BookCopy>();
     }
@@ -63,6 +68,11 @@ public class Book implements Identifiable {
         isAvailable = available;
     }
 
+    @Override
+    public String getID() {
+        return id;
+    }
+
 
     @Override
     public String toString() {
@@ -73,10 +83,5 @@ public class Book implements Identifiable {
                 ", copies=" + copies +
                 ", isAvailable=" + isAvailable +
                 '}';
-    }
-
-    @Override
-    public String getID() {
-        return null;
     }
 }
