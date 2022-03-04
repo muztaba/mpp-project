@@ -8,9 +8,12 @@ import com.mpp.utils.ApplicationContext;
 import com.mpp.utils.Command;
 import com.mpp.utils.CommandParser;
 
+import javax.naming.AuthenticationException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.concurrent.TimeUnit;
 
 public class App {
 
@@ -42,7 +45,20 @@ public class App {
                     String username = sc.nextLine();
                     System.out.println("Please enter password");
                     String password = sc.nextLine();
-                    new AuthenticationController().authenticate(username,password);
+                    User user;
+                    try {
+                        user = new AuthenticationController().authenticate(username,password);
+                    } catch (AuthenticationException e) {
+                        e.printStackTrace();
+                        System.out.println("Login failed !");
+                        try {
+                            TimeUnit.SECONDS.sleep(3);
+                        } catch (InterruptedException interruptedException) {
+                            interruptedException.printStackTrace();
+                        }
+                        break;
+                    }
+
                     break;
             }
 
