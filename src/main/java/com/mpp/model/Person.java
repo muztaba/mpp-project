@@ -1,10 +1,19 @@
 package com.mpp.model;
 
 public class Person {
+    protected String id;
     protected String firstName;
     protected String lastName;
     protected Address address;
     protected Integer phone;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getFirstName() {
         return firstName;
