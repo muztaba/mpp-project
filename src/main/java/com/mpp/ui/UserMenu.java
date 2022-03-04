@@ -77,7 +77,7 @@ public class UserMenu {
                     break;
                 case 12:
                     System.out.println("Logging out!");
-                    ApplicationContext.getAuthenticationConroller().logout();
+                    ((AuthenticationController) ControllerFactory.getController(AuthenticationController.class)).logout();
                     break;
 
             }

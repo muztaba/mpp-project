@@ -13,11 +13,6 @@ import java.util.Map;
 
 public class AuthenticationController implements DomainController {
 
-
-    public AuthenticationController(){
-        ApplicationContext.authenticationController = this;
-    }
-
     public User authenticate(String username, String password) throws AuthenticationException {
         for (Map.Entry<String, User> k : App.userMap.entrySet()) {
             User user = k.getValue();
