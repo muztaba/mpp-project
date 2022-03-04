@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Book implements Serializable, Identifiable {
+    public static Integer numberOfCopies;
     private String id;
     private String isbn;
     private String title;
@@ -20,11 +21,19 @@ public class Book implements Serializable, Identifiable {
         copies = new ArrayList<>();
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public void addAuthor(Author author) {
         authors.add(author);
     }
 
-    public void addCopy(BookCopy bookCopy) {
+    public void addBookCopy(BookCopy bookCopy) {
         copies.add(bookCopy);
     }
 

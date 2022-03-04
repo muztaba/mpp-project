@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 class BookSerializerTest {
 
@@ -55,7 +56,7 @@ class BookSerializerTest {
         author.setId("890");
         author.setFirstName("firstName");
 
-        BookCopy bookCopy = new BookCopy();
+        BookCopy bookCopy = new BookCopy(book);
 
         book.setAuthors(List.of(author));
         book.setCopies(List.of(bookCopy));
