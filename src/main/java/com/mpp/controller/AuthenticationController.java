@@ -11,7 +11,7 @@ import javax.naming.AuthenticationException;
 import java.nio.file.AccessDeniedException;
 import java.util.Map;
 
-public class AuthenticationController {
+public class AuthenticationController implements DomainController {
 
 
     public AuthenticationController(){
