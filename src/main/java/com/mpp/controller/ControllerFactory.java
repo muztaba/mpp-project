@@ -7,6 +7,8 @@ public final class ControllerFactory {
     private static AuthorController authorController;
     private static LibraryMemberController libraryMemberController;
 
+    private ControllerFactory() {}
+
     public static BookController getBookController() {
         if (bookController == null) {
             bookController = new BookController();
