@@ -3,6 +3,7 @@ package com.mpp.ui;
 import com.mpp.controller.AuthenticationController;
 import com.mpp.controller.BookController;
 import com.mpp.controller.ControllerFactory;
+import com.mpp.exception.ValidationException;
 import com.mpp.model.Role;
 import com.mpp.model.User;
 import com.mpp.utils.*;
@@ -45,12 +46,17 @@ public class UserMenu {
                 case 1:
                     try {
                         AddBook.showUI();
-                    } catch (WrongInput wrongInput) {
+                    } catch (ValidationException wrongInput) {
                         wrongInput.printStackTrace();
                         UserMenu.showUI(uiContext);
                     }
                 case 2:
-                    break;
+                    try {
+                        AddLibraryMember.showUI();
+                    } catch (ValidationException | NumberFormatException wrongInput) {
+                        wrongInput.printStackTrace();
+                        UserMenu.showUI(uiContext);
+                    }
                 case 3:
                     break;
                 case 4:
@@ -71,7 +77,7 @@ public class UserMenu {
                     break;
                 case 12:
                     System.out.println("Logging out!");
-                    ApplicationContext.getAuthenticationConroller().logout();
+                    ((AuthenticationController) ControllerFactory.getController(AuthenticationController.class)).logout();
                     break;
 
             }

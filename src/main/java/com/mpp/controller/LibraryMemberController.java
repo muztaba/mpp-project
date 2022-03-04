@@ -1,14 +1,15 @@
 package com.mpp.controller;
 
+import com.mpp.exception.ValidationException;
 import com.mpp.model.Address;
 import com.mpp.model.LibraryMember;
 import com.mpp.repository.LibraryMemberRepository;
 import com.mpp.repository.RepositoryFactory;
+import com.mpp.validation.ValidatorFactory;
 
 import java.util.UUID;
 
-public class LibraryMemberController {
-
+public class LibraryMemberController implements DomainController {
     private final LibraryMemberRepository libraryMemberRepository;
 
     public LibraryMemberController(LibraryMemberRepository libraryMemberRepository) {
@@ -22,7 +23,7 @@ public class LibraryMemberController {
             String street,
             String city,
             String state,
-            Integer zip) {
+            Integer zip) throws ValidationException {
 
         LibraryMember libraryMember = new LibraryMember(
                 UUID.randomUUID().toString(),
@@ -33,8 +34,7 @@ public class LibraryMemberController {
                 city,
                 state,
                 zip);
-
-        // TODO: call dao to save
+        ValidatorFactory.getValidator(LibraryMember.class).validate(libraryMember);
         return libraryMember;
     }
 
@@ -47,16 +47,16 @@ public class LibraryMemberController {
             String city,
             String state,
             Integer zip) {
-        LibraryMember libraryMember = RepositoryFactory.libraryMemberRepository().findById(id);
+        LibraryMember libraryMember = libraryMemberRepository.findById(id);
         libraryMember.setFirstName(firstName);
         libraryMember.setLastName(lastName);
         libraryMember.setPhone(phone);
         libraryMember.setAddress(new Address(street, city, state, zip));
 
-        return RepositoryFactory.libraryMemberRepository().save(libraryMember);
+        return libraryMemberRepository.save(libraryMember);
     }
 
     public LibraryMember searchMemberByID(String id) {
-        return RepositoryFactory.libraryMemberRepository().findById(id);
+        return libraryMemberRepository.findById(id);
     }
 }

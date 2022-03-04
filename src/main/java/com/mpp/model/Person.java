@@ -2,16 +2,12 @@ package com.mpp.model;
 
 import java.io.Serializable;
 
-public class Person implements Serializable {
+public class Person implements Serializable, Identifiable {
     protected String id;
     protected String firstName;
     protected String lastName;
     protected Address address;
     protected Integer phone;
-
-    public String getId() {
-        return id;
-    }
 
     public void setId(String id) {
         this.id = id;
@@ -58,5 +54,10 @@ public class Person implements Serializable {
                 ", address=" + address +
                 ", phone=" + phone +
                 '}';
+    }
+
+    @Override
+    public String getID() {
+        return id;
     }
 }

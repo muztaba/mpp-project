@@ -5,13 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Book implements Serializable, Identifiable {
+    private String id;
     private String isbn;
     private String title;
     private List<Author> authors;
     private List<BookCopy> copies;
     private Boolean isAvailable;
 
-    public Book() {
+    public Book(String id, String title, String isbn) {
+        this.id = id;
+        this.title = title;
+        this.isbn = isbn;
         authors = new ArrayList<>();
         copies = new ArrayList<>();
     }
@@ -66,8 +70,9 @@ public class Book implements Serializable, Identifiable {
 
     @Override
     public String getID() {
-        return isbn;
+        return id;
     }
+
 
     @Override
     public String toString() {
