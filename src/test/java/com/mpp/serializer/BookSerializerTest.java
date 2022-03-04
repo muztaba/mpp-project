@@ -3,13 +3,14 @@ package com.mpp.serializer;
 import com.mpp.model.Author;
 import com.mpp.model.Book;
 import com.mpp.model.BookCopy;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.security.SecureRandom;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -84,7 +85,7 @@ class BookSerializerTest {
         author.setId("890");
         author.setFirstName("firstName" + rand);
 
-        BookCopy bookCopy = new BookCopy();
+        BookCopy bookCopy = new BookCopy(book);
 
         book.setAuthors(List.of(author));
         book.setCopies(List.of(bookCopy));

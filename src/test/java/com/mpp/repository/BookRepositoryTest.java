@@ -19,7 +19,7 @@ class BookRepositoryTest {
         author.setId("890");
         author.setFirstName("firstName");
 
-        BookCopy bookCopy = new BookCopy();
+        BookCopy bookCopy = new BookCopy(book);
 
         book.setAuthors(List.of(author));
         book.setCopies(List.of(bookCopy));

@@ -3,6 +3,7 @@ package com.mpp.controller;
 import com.mpp.exception.ValidationException;
 import com.mpp.model.Author;
 import com.mpp.model.Book;
+import com.mpp.model.BookCopy;
 import com.mpp.repository.BookRepository;
 import com.mpp.validation.ValidatorFactory;
 
@@ -18,8 +19,6 @@ public class BookController implements DomainController {
     }
 
     public Book addNewBook(String title, String isbn, List<String> authorNames) throws ValidationException {
-        // TODO: check if the user has access to this operation
-
         Book book = new Book(UUID.randomUUID().toString(), title, isbn);
         book.setAvailable(true);
         // get Author by author name and add to the book
@@ -30,10 +29,15 @@ public class BookController implements DomainController {
         }
         // Validate input and handle exception
         ValidatorFactory.getValidator(Book.class).validate(book);
-        // TODO: create a book copy for this copy
-        // TODO: save the book using BookRepository and return book
-        // RepositoryFactory.getLibraryMemberRepository().save(book);
+        BookCopy bookCopy = new BookCopy(book);
+        book.addBookCopy(bookCopy);
+        return bookRepository.save(book);
+    }
 
+    public Book addNewBookCopy(String isbn) {
+        Book book = searchBookByIsbn(isbn);
+        BookCopy bookCopy = new BookCopy(searchBookByIsbn(isbn));
+        book.addBookCopy(bookCopy);
         return bookRepository.save(book);
     }
 
