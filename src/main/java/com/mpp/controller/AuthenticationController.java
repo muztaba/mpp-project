@@ -4,6 +4,7 @@ import com.mpp.App;
 import com.mpp.model.Role;
 import com.mpp.model.User;
 import com.mpp.ui.LoginPage;
+import com.mpp.ui.UserMenu;
 import com.mpp.utils.ApplicationContext;
 import com.mpp.utils.UIContext;
 
@@ -31,6 +32,16 @@ public class AuthenticationController implements DomainController {
     public void hasPermission(User user, Role role) throws AccessDeniedException {
         boolean flag = user.getRoles().contains(role);
         if (!flag) throw new AccessDeniedException("You have no access here!");
+    }
+
+    public void authorizationHandler(Role roleNeeded){
+        try {
+            ((AuthenticationController)ControllerFactory.getController(AuthenticationController.class)).hasPermission(ApplicationContext.getUser(), roleNeeded);
+        } catch (AccessDeniedException e) {
+            e.printStackTrace();
+            System.out.println("Access Denied! You have no Power Here!");
+            UserMenu.showUI(UIContext.getInstance());
+        }
     }
 
 
