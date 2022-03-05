@@ -4,6 +4,8 @@ import com.mpp.serializer.SerializerFactory;
 
 final public class RepositoryFactory {
 
+    private static final String storage = "storage/";
+
     private RepositoryFactory() {
     }
 
@@ -13,7 +15,7 @@ final public class RepositoryFactory {
 
     public static LibraryMemberRepository libraryMemberRepository() {
         if (libraryMemberRepository == null) {
-            libraryMemberRepository = new LibraryMemberRepository(SerializerFactory.libraryMemberSerializer("libraryMember.bin"));
+            libraryMemberRepository = new LibraryMemberRepository(SerializerFactory.libraryMemberSerializer(storage + "libraryMember.bin"));
         }
 
         return libraryMemberRepository;
@@ -21,7 +23,7 @@ final public class RepositoryFactory {
 
     public static BookRepository bookRepository() {
         if (bookRepository == null) {
-            bookRepository = new BookRepository(SerializerFactory.bookSerializer("book.bin"));
+            bookRepository = new BookRepository(SerializerFactory.bookSerializer(storage + "book.bin"));
         }
 
         return bookRepository;
@@ -29,7 +31,7 @@ final public class RepositoryFactory {
 
     public static AuthorRepository authorRepository() {
         if (authorRepository == null) {
-            authorRepository = new AuthorRepository(SerializerFactory.authorSerializer("author.bin"));
+            authorRepository = new AuthorRepository(SerializerFactory.authorSerializer(storage + "author.bin"));
         }
 
         return authorRepository;
