@@ -5,7 +5,6 @@ import com.mpp.model.Book;
 import com.mpp.model.BookCopy;
 import com.mpp.model.LibraryMember;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;

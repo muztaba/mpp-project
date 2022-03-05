@@ -6,8 +6,8 @@ import com.mpp.serializer.Storage;
 
 public class BookRepository extends Repository<Book> {
 
-    BookRepository(ISerializer bookSerializer) {
-        super(bookSerializer, Storage.INSTANCE.books);
+    BookRepository() {
+        super(Storage.INSTANCE.books);
     }
 
 }
