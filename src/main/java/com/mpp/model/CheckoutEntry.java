@@ -1,8 +1,9 @@
 package com.mpp.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class CheckoutEntry {
+public class CheckoutEntry implements Serializable {
     private BookCopy bookCopy;
     private Date checkoutDate;
     private Date dueDate;

@@ -32,7 +32,7 @@ public class LoginPage {
 
             switch (command) {
                 case EXIT -> {
-                    new File(storageLocation).delete();
+//                    new File(storageLocation).delete();
                     serializer.serialize(ApplicationContext.storage);
                     System.exit(0);
                 }
