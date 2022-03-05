@@ -54,8 +54,8 @@ public class UserMenu {
                     case 4:
                             SearchMember.showUI();
                             break;
-                    case 5:
-                        break;
+                    case 5: SearchBook.showUI();
+                            break;
                     case 6:
                         break;
                     case 7:
