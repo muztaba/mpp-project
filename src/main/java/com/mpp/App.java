@@ -39,9 +39,9 @@ public class App {
                     "shohor", "rastro", 52557, "Good Writer");
             authorController.createAuthor("paul", "Brown", 1234567890, "1000 n",
                     "fairfeild", "iowa", 52556, "Ok Writer");
-            bookController.addNewBook("Inferno", 1234, 7, List.of("dan"));
-            bookController.addNewBook("Not Inferno", 1235, 21, List.of("paul"));
-            libraryMemberController.createLibraryMember("Uzbuk", "Jolil", 0987654, "street", "city", "state", 555555);
+            bookController.addNewBook("Inferno", "1234", 7, List.of("dan"));
+            bookController.addNewBook("Not Inferno", "1235", 21, List.of("paul"));
+            libraryMemberController.createLibraryMember("Uzbuk", "Jolil", 123456, "street", "city", "state", 555555);
             libraryMemberController.createLibraryMember("Harami", "lname", 54321678, "street", "city", "state", 22222);
         } catch (Exception e) {
             System.out.println("Matha Karap!");
