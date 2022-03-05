@@ -15,8 +15,8 @@ import java.util.Scanner;
 public class AddLibraryMember {
 
 
-    public static void showUI() throws NumberFormatException, ValidationException {
-        ((AuthenticationController) ControllerFactory.getController(AuthenticationController.class)).authenticationHandler(Role.ADMIN);
+    public static void showUI() throws ValidationException,NumberFormatException {
+        ((AuthenticationController)ControllerFactory.getController(AuthenticationController.class)).authorizationHandler(Role.ADMIN);
 
         LibraryMemberController libraryMemberController = (LibraryMemberController) ControllerFactory.getController(LibraryMember.class);
         System.out.println("Please enter first Name");

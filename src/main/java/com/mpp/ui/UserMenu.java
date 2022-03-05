@@ -74,8 +74,6 @@ public class UserMenu {
                 wrongInput.printStackTrace();
                 UserMenu.showUI(uiContext);
             }
-
-
             printDirections(user);
         }
 
