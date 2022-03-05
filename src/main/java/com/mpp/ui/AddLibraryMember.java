@@ -35,8 +35,8 @@ public class AddLibraryMember {
         System.out.println("Please enter zip");
         int zip = Integer.parseInt(sc.nextLine());
 
-        LibraryMember libraryMember = libraryMemberController.createLibraryMember(fname, lname, phoneNumber,
-                street, city, state, zip);
+
+        LibraryMember libraryMember = libraryMemberController.createLibraryMember(fname,lname,phoneNumber,street,city,state,zip);
         System.out.println("Added New Library Member");
         System.out.println(libraryMember);
     }

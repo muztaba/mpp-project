@@ -1,16 +1,13 @@
 package com.mpp.ui;
 
 import com.mpp.controller.AuthenticationController;
-import com.mpp.controller.BookController;
 import com.mpp.controller.ControllerFactory;
 import com.mpp.exception.ValidationException;
 import com.mpp.model.Role;
 import com.mpp.model.User;
 import com.mpp.utils.*;
 
-import javax.naming.AuthenticationException;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 public class UserMenu {
 
@@ -22,7 +19,7 @@ public class UserMenu {
         }
         if (user.getRoles().contains(Role.LIBRARIAN)) {
             System.out.println(" 4. Search Member By ID \n 5. Get Checkout Records by Members \n 6. Search Book by ISBN \n " +
-                    "7. Get All Overdue Books \n 8. Get Total Fine for all Library Member \n 9. Get All Checkout Entires" +
+                    "7. Get All Overdue Books \n 8. Get Total Fine for all Library Member \n 9. Get All Checkout Entries" +
                     " \n 10. Get All overdue Entries \n 11. Checkout Book");
         }
 
@@ -52,7 +49,7 @@ public class UserMenu {
                     case 3:
                             EditLibraryMember.showUI();
                     case 4:
-                        break;
+                            SearchMember.showUI();
                     case 5:
                         break;
                     case 6:

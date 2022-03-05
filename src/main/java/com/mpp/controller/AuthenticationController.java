@@ -34,7 +34,7 @@ public class AuthenticationController implements DomainController {
         if (!flag) throw new AccessDeniedException("You have no access here!");
     }
 
-    public void authenticationHandler(Role roleNeeded){
+    public void authorizationHandler(Role roleNeeded){
         try {
             ((AuthenticationController)ControllerFactory.getController(AuthenticationController.class)).hasPermission(ApplicationContext.getUser(), roleNeeded);
         } catch (AccessDeniedException e) {

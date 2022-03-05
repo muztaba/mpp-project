@@ -6,18 +6,14 @@ import com.mpp.controller.LibraryMemberController;
 import com.mpp.exception.ValidationException;
 import com.mpp.model.LibraryMember;
 import com.mpp.model.Role;
-import com.mpp.utils.ApplicationContext;
 import com.mpp.utils.UIContext;
 
-import java.nio.file.AccessDeniedException;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Scanner;
 
 public class EditLibraryMember {
     public static void showUI() throws ValidationException, NumberFormatException {
-        ((AuthenticationController) ControllerFactory.getController(AuthenticationController.class)).authenticationHandler(Role.ADMIN);
+        ((AuthenticationController) ControllerFactory.getController(AuthenticationController.class)).authorizationHandler(Role.ADMIN);
 
         LibraryMemberController libraryMemberController = ControllerFactory.getLibraryMemberController();
 

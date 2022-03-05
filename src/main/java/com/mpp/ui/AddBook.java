@@ -6,11 +6,9 @@ import com.mpp.controller.ControllerFactory;
 import com.mpp.exception.ValidationException;
 import com.mpp.model.Book;
 import com.mpp.model.Role;
-import com.mpp.utils.ApplicationContext;
 import com.mpp.utils.UIContext;
 import com.mpp.validation.ValidatorUtility;
 
-import java.nio.file.AccessDeniedException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -19,7 +17,7 @@ public class AddBook {
 
 
     public static void showUI() throws ValidationException , NumberFormatException{
-        ((AuthenticationController)ControllerFactory.getController(AuthenticationController.class)).authenticationHandler(Role.ADMIN);
+        ((AuthenticationController)ControllerFactory.getController(AuthenticationController.class)).authorizationHandler(Role.ADMIN);
 
         BookController bookController = (BookController) ControllerFactory.getController(Book.class);
         System.out.println("Please enter the title of the Book");
