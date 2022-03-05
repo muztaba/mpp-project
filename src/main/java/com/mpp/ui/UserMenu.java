@@ -38,11 +38,17 @@ public class UserMenu {
             System.out.println(
                     " 13. Get All Books\n " +
                             "14. Get All Authors \n " +
-                            "15. Add Authors");
+                            "15. Add Authors "
+                            );
+        }
+
+        if (user.getRoles().contains(Role.ADMIN)) {
+            System.out.println(" 16. Add new Copy of Book");
         }
 
 
-        System.out.println(" 16. Logout");
+
+        System.out.println(" 17. Logout");
     }
 
 
@@ -60,79 +66,71 @@ public class UserMenu {
             //TODO: need connect everything to the UI also make authentication as well
 
             try {
+                //                        Get All library member
+                //                        Get All Books
+                //                        Get All Authors
                 switch (cmd) {
-                    case 1:
-                        AddBook.showUI();
-                        break;
-                    case 2:
-                        AddLibraryMember.showUI();
-                        break;
-                    case 3:
-                        EditLibraryMember.showUI();
-                        break;
-                    case 4:
-                        SearchMember.showUI();
-                        break;
-                    case 5:
-                        SearchRecordByMember.showUI();
-                        break;
-                    case 6:
-                        SearchBook.showUI();
-                        break;
-                    case 7:
+                    case 1 -> AddBook.showUI();
+                    case 2 -> AddLibraryMember.showUI();
+                    case 3 -> EditLibraryMember.showUI();
+                    case 4 -> SearchMember.showUI();
+                    case 5 -> SearchRecordByMember.showUI();
+                    case 6 -> SearchBook.showUI();
+                    case 7 -> {
+                        ((AuthenticationController) ControllerFactory.getController(AuthenticationController.class))
+                                .authorizationHandler(Role.LIBRARIAN);
                         float sum = 0.0f;
                         var allOverDueBooks = ((CheckoutRecordController) ControllerFactory.getController(CheckoutRecord.class))
                                 .getAllOverdueEntries();
-
                         for (var it : allOverDueBooks) {
                             sum += it.getFine();
                             System.out.println(it);
                         }
                         System.out.println("Total fine = " + sum);
-
-                        break;
-                    case 8:
+                    }
+                    case 8 -> {
+                        ((AuthenticationController) ControllerFactory.getController(AuthenticationController.class))
+                                .authorizationHandler(Role.LIBRARIAN);
                         float fineSum = 0.0f;
                         var allOverDueBookList = ((CheckoutRecordController) ControllerFactory.getController(CheckoutRecord.class))
                                 .getAllOverdueEntries();
-
                         for (var it : allOverDueBookList) {
                             fineSum += it.getFine();
 //                            System.out.println(it);
                         }
                         System.out.println("Total fine = " + fineSum);
-                        break;
-                    case 9:
+                    }
+                    case 9 -> {
+                        ((AuthenticationController) ControllerFactory.getController(AuthenticationController.class))
+                                .authorizationHandler(Role.LIBRARIAN);
                         var allCheckoutEntries = ((CheckoutRecordController) ControllerFactory.getController(CheckoutRecord.class))
                                 .getAllCheckoutEntries();
-
                         for (var it : allCheckoutEntries) {
 //                            fineSum += it.getFine();
                             System.out.println(it);
                         }
-                        break;
-                    case 10:
+                    }
+                    case 10 -> {
+                        ((AuthenticationController) ControllerFactory.getController(AuthenticationController.class))
+                                .authorizationHandler(Role.LIBRARIAN);
                         var allOverdueEntries = ((CheckoutRecordController) ControllerFactory.getController(CheckoutRecord.class))
                                 .getAllOverdueEntries();
-
                         for (var it : allOverdueEntries) {
 //                            fineSum += it.getFine();
                             System.out.println(it);
                         }
-                        break;
-                    case 11:
-                        CheckoutBook.showUI();
-                        break;
-                    case 12:
-//                        Get All library member
+                    }
+                    case 11 -> CheckoutBook.showUI();
+                    case 12 -> {
+                        ((AuthenticationController) ControllerFactory.getController(AuthenticationController.class))
+                                .authorizationHandler(Role.LIBRARIAN);
                         Collection<LibraryMember> allLibraryMember = ((LibraryMemberController) ControllerFactory
                                 .getController(LibraryMember.class)).getAllMember();
                         for (LibraryMember libraryMember : allLibraryMember) {
                             System.out.println(libraryMember);
                         }
-                        break;
-                    case 13:
-//                        Get All Books
+                    }
+                    case 13 -> {
                         ((AuthenticationController) ControllerFactory.getController(AuthenticationController.class))
                                 .authorizationHandler(Role.LIBRARIAN);
                         Collection<Book> books = ((BookController) ControllerFactory
@@ -140,9 +138,8 @@ public class UserMenu {
                         for (Book book : books) {
                             System.out.println(book);
                         }
-                        break;
-                    case 14:
-//                        Get All Authors
+                    }
+                    case 14 -> {
                         ((AuthenticationController) ControllerFactory.getController(AuthenticationController.class))
                                 .authorizationHandler(Role.LIBRARIAN);
                         Collection<Author> authors = ((AuthorController) ControllerFactory
@@ -150,15 +147,13 @@ public class UserMenu {
                         for (Author author : authors) {
                             System.out.println(author);
                         }
-                        break;
-                    case 15:
-                        AddAuthor.showUI();
-                        break;
-                    case 16:
+                    }
+                    case 15 -> AddAuthor.showUI();
+                    case 16 -> AddBookCopy.showUI();
+                    case 17 -> {
                         System.out.println("Logging out!");
                         ((AuthenticationController) ControllerFactory.getController(AuthenticationController.class)).logout();
-                        break;
-
+                    }
                 }
             } catch (ValidationException | NumberFormatException wrongInput) {
                 wrongInput.printStackTrace();
