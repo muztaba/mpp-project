@@ -44,12 +44,16 @@ public class UserMenu {
                 switch (cmd) {
                     case 1:
                             AddBook.showUI();
+                            break;
                     case 2:
                             AddLibraryMember.showUI();
+                            break;
                     case 3:
                             EditLibraryMember.showUI();
+                            break;
                     case 4:
                             SearchMember.showUI();
+                            break;
                     case 5:
                         break;
                     case 6:
