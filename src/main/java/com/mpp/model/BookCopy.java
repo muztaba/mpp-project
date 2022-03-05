@@ -1,7 +1,7 @@
 package com.mpp.model;
 
 import java.io.Serializable;
-import java.util.UUID;
+import java.util.Random;
 
 public class BookCopy implements Serializable, Identifiable {
     private String id;
@@ -10,7 +10,7 @@ public class BookCopy implements Serializable, Identifiable {
     private Boolean isAvailable;
 
     public BookCopy(Book book) {
-        this.id = UUID.randomUUID().toString();
+        this.id = String.valueOf(new Random().nextDouble());
         this.book = book;
         Book.numberOfCopies += 1;
         this.copyNumber = Book.numberOfCopies;
