@@ -1,6 +1,7 @@
 package com.mpp.validation;
 
 import com.mpp.model.Address;
+import com.mpp.model.Author;
 import com.mpp.model.Book;
 import com.mpp.model.LibraryMember;
 
@@ -14,6 +15,7 @@ public final class ValidatorFactory {
         put(Book.class, new BookValidator());
         put(LibraryMember.class, new LibraryMemberValidator());
         put(Address.class, new AddressValidator());
+        put(Author.class, new AuthorValidator());
     }};
 
     public static IValidator getValidator(Class<? extends Object> clazz) {
