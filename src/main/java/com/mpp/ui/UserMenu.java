@@ -34,11 +34,12 @@ public class UserMenu {
         if (user.getRoles().contains(Role.LIBRARIAN)) {
             System.out.println(
                     " 13. Get All Books\n " +
-                            "14. Get All Authors");
+                            "14. Get All Authors \n " +
+                            "15. Add Authors");
         }
 
 
-        System.out.println(" 15. Logout");
+        System.out.println(" 16. Logout");
     }
 
 
@@ -94,7 +95,7 @@ public class UserMenu {
                         break;
                     case 13:
                         ((AuthenticationController) ControllerFactory.getController(AuthenticationController.class))
-                                .authorizationHandler(Role.ADMIN);
+                                .authorizationHandler(Role.LIBRARIAN);
                         Collection<Book> books = ((BookController) ControllerFactory
                                 .getController(Book.class)).getAllBooks();
                         for (Book book : books) {
@@ -103,7 +104,7 @@ public class UserMenu {
                         break;
                     case 14:
                         ((AuthenticationController) ControllerFactory.getController(AuthenticationController.class))
-                                .authorizationHandler(Role.ADMIN);
+                                .authorizationHandler(Role.LIBRARIAN);
                         Collection<Author> authors = ((AuthorController) ControllerFactory
                                 .getController(Author.class)).getAllAuthor();
                         for (Author author : authors) {
@@ -111,6 +112,9 @@ public class UserMenu {
                         }
                         break;
                     case 15:
+                        AddAuthor.showUI();
+                        break;
+                    case 16:
                         System.out.println("Logging out!");
                         ((AuthenticationController) ControllerFactory.getController(AuthenticationController.class)).logout();
                         break;
