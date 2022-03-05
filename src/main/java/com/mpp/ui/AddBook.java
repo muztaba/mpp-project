@@ -33,6 +33,8 @@ public class AddBook {
         String title = sc.nextLine();
         System.out.println("Please enter the isbn of the Book");
         String isbn = sc.nextLine();
+        System.out.println("Please enter the borrow duration of the Book");
+        Integer borrowDurationInDays = Integer.parseInt(sc.nextLine());
         System.out.println("Please enter the author Names ");
         List<String> authorNames = new ArrayList<>();
         String authorName = sc.nextLine();
@@ -58,7 +60,7 @@ public class AddBook {
         }
         Book book = null;
         try {
-            book = bookController.addNewBook(title, isbn, authorNames);
+            book = bookController.addNewBook(title, isbn, borrowDurationInDays, authorNames);
         } catch (ValidationException validationException) {
             validationException.printStackTrace();
             System.out.println("Invalid Inputs! Please start from beginning!");

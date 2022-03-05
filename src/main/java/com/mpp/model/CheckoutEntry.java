@@ -10,6 +10,14 @@ public class CheckoutEntry {
     private User checkoutBy;
     private LibraryMember borrowedBy;
 
+    public CheckoutEntry(BookCopy bookCopy, Date checkoutDate, Date dueDate, User checkoutBy, LibraryMember borrowedBy) {
+        this.bookCopy = bookCopy;
+        this.checkoutDate = checkoutDate;
+        this.dueDate = dueDate;
+        this.checkoutBy = checkoutBy;
+        this.borrowedBy = borrowedBy;
+    }
+
     public BookCopy getBookCopy() {
         return bookCopy;
     }

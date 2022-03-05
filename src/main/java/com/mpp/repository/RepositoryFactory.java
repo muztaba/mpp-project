@@ -8,6 +8,7 @@ final public class RepositoryFactory {
     private static LibraryMemberRepository libraryMemberRepository;
     private static BookRepository bookRepository;
     private static AuthorRepository authorRepository;
+    private static CheckoutRecordRepository checkoutRecordRepository;
 
     public static LibraryMemberRepository libraryMemberRepository() {
         if (libraryMemberRepository == null) {
@@ -31,6 +32,14 @@ final public class RepositoryFactory {
         }
 
         return authorRepository;
+    }
+
+    public static CheckoutRecordRepository checkoutRecordRepository() {
+        if (checkoutRecordRepository == null) {
+            checkoutRecordRepository = new CheckoutRecordRepository();
+        }
+
+        return checkoutRecordRepository;
     }
 
 }
