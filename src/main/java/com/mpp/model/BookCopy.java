@@ -1,13 +1,16 @@
 package com.mpp.model;
 
 import java.io.Serializable;
+import java.util.UUID;
 
-public class BookCopy implements Serializable {
+public class BookCopy implements Serializable, Identifiable {
+    private String id;
     private Book book;
     private Integer copyNumber;
     private Boolean isAvailable;
 
     public BookCopy(Book book) {
+        this.id = UUID.randomUUID().toString();
         this.book = book;
         Book.numberOfCopies += 1;
         this.copyNumber = Book.numberOfCopies;
@@ -36,5 +39,18 @@ public class BookCopy implements Serializable {
 
     public void setCopyNumber(Integer copyNumber) {
         this.copyNumber = copyNumber;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @Override
+    public String getID() {
+        return getId();
     }
 }
