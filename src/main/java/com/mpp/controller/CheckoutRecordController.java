@@ -70,11 +70,11 @@ public class CheckoutRecordController implements DomainController {
                 .toList();
     }
 
-    public LibraryMember findLibraryMemberByBookCopy(String bookCopyId) {
+    public CheckoutEntry findLibraryMemberByBookCopy(String bookCopyId) {
         for (CheckoutRecord r : checkoutRecordRepository.findAll()) {
             for (CheckoutEntry e : r.getCheckoutEntries()) {
                 if (e.getBookCopy().getID().equals(bookCopyId)) {
-                    return e.getBorrowedBy();
+                    return e;
                 }
             }
         }
