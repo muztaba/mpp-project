@@ -1,6 +1,5 @@
 package com.mpp.model;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 public class CheckoutEntry {
@@ -9,6 +8,7 @@ public class CheckoutEntry {
     private Date dueDate;
     private User checkoutBy;
     private LibraryMember borrowedBy;
+    private float fine;
 
     public CheckoutEntry(BookCopy bookCopy, Date checkoutDate, Date dueDate, User checkoutBy, LibraryMember borrowedBy) {
         this.bookCopy = bookCopy;
@@ -56,5 +56,13 @@ public class CheckoutEntry {
 
     public void setBorrowedBy(LibraryMember borrowedBy) {
         this.borrowedBy = borrowedBy;
+    }
+
+    public float getFine() {
+        return fine;
+    }
+
+    public void setFine(float fine) {
+        this.fine = fine;
     }
 }
