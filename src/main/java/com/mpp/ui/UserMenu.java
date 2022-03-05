@@ -123,6 +123,9 @@ public class UserMenu {
             } catch (ValidationException | NumberFormatException wrongInput) {
                 wrongInput.printStackTrace();
                 UserMenu.showUI(uiContext);
+            } catch (Exception e) {
+                System.out.println("OOPS SOMETHING WENT WRONG!");
+                UserMenu.showUI(uiContext);
             }
             printDirections(user);
         }
