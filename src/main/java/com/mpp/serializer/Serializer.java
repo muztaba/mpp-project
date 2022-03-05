@@ -23,7 +23,8 @@ abstract class Serializer implements ISerializer {
             objectinputstream = new ObjectInputStream(streamIn);
             return objectinputstream.readObject();
         } catch (Exception e) {
-            System.out.println("file not found.. returning null");
+//            e.printStackTrace();
+            System.out.println(getFileName() + " file not found.. returning null");
         } finally {
             if(objectinputstream != null){
                 try {

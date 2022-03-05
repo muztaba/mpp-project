@@ -10,6 +10,7 @@ import com.mpp.repository.RepositoryFactory;
 import com.mpp.validation.ValidatorFactory;
 
 import java.util.List;
+import java.util.Collection;
 import java.util.UUID;
 
 public class LibraryMemberController implements DomainController {
@@ -38,6 +39,7 @@ public class LibraryMemberController implements DomainController {
                 state,
                 zip);
         ValidatorFactory.getValidator(LibraryMember.class).validate(libraryMember);
+        libraryMemberRepository.save(libraryMember);
         return libraryMember;
     }
 
@@ -49,19 +51,27 @@ public class LibraryMemberController implements DomainController {
             String street,
             String city,
             String state,
-            Integer zip) {
+            Integer zip) throws ValidationException {
         LibraryMember libraryMember = libraryMemberRepository.findById(id);
         libraryMember.setFirstName(firstName);
         libraryMember.setLastName(lastName);
         libraryMember.setPhone(phone);
         libraryMember.setAddress(new Address(street, city, state, zip));
-
+        System.out.println(libraryMember);
+        ValidatorFactory.getValidator(LibraryMember.class).validate(libraryMember);
         return libraryMemberRepository.save(libraryMember);
     }
 
     public LibraryMember searchMemberByID(String id) {
         return libraryMemberRepository.findById(id);
     }
+
+    public Collection<LibraryMember> getAllMember(){
+        return libraryMemberRepository.findAll();
+    }
+
+
+
 
     public List<CheckoutEntry> getCheckoutEntriesByLibraryMember(String id) {
         LibraryMember libraryMember = libraryMemberRepository.findById(id);
