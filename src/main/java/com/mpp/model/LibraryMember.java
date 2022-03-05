@@ -31,4 +31,14 @@ public class LibraryMember extends Person implements Identifiable {
     public String getID() {
         return id;
     }
+
+
+    @Override
+    public String toString() {
+        return "LibraryMember{" +
+                "uuid : " + this.getID() +
+                "\ncheckoutRecord=" + checkoutRecord +
+                "\nPerson=" + super.toString() +
+                '}';
+    }
 }

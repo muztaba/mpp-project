@@ -42,45 +42,43 @@ public class UserMenu {
             int cmd = Integer.parseInt(sc.nextLine());
 
             //TODO: need connect everything to the UI also make authentication as well
-            switch (cmd) {
-                case 1:
-                    try {
-                        AddBook.showUI();
-                    } catch (ValidationException wrongInput) {
-                        wrongInput.printStackTrace();
-                        UserMenu.showUI(uiContext);
-                    }
-                case 2:
-                    try {
-                        AddLibraryMember.showUI();
-                    } catch (ValidationException | NumberFormatException wrongInput) {
-                        wrongInput.printStackTrace();
-                        UserMenu.showUI(uiContext);
-                    }
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    break;
-                case 6:
-                    break;
-                case 7:
-                    break;
-                case 8:
-                    break;
-                case 9:
-                    break;
-                case 10:
-                    break;
-                case 11:
-                    break;
-                case 12:
-                    System.out.println("Logging out!");
-                    ((AuthenticationController) ControllerFactory.getController(AuthenticationController.class)).logout();
-                    break;
 
+            try {
+                switch (cmd) {
+                    case 1:
+                            AddBook.showUI();
+                    case 2:
+                            AddLibraryMember.showUI();
+                    case 3:
+                            EditLibraryMember.showUI();
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                    case 6:
+                        break;
+                    case 7:
+                        break;
+                    case 8:
+                        break;
+                    case 9:
+                        break;
+                    case 10:
+                        break;
+                    case 11:
+                        break;
+                    case 12:
+                        System.out.println("Logging out!");
+                        ((AuthenticationController) ControllerFactory.getController(AuthenticationController.class)).logout();
+                        break;
+
+                }
+            } catch (ValidationException | NumberFormatException wrongInput) {
+                wrongInput.printStackTrace();
+                UserMenu.showUI(uiContext);
             }
+
+
             printDirections(user);
         }
 

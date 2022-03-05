@@ -19,10 +19,10 @@ public class Author extends Person implements Identifiable {
     @Override
     public String toString() {
         return "Author{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", address=" + address +
-                ", phone=" + phone +
+                "\nfirstName='" + firstName + '\'' +
+                ", \nlastName='" + lastName + '\'' +
+                ", \naddress=" + address +
+                ", \nphone=" + phone +
                 '}';
     }
 }
