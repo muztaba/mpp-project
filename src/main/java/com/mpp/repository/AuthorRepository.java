@@ -2,13 +2,12 @@ package com.mpp.repository;
 
 import com.mpp.model.Author;
 import com.mpp.serializer.ISerializer;
-
-import java.util.Map;
+import com.mpp.serializer.Storage;
 
 public class AuthorRepository extends Repository<Author> {
 
     public AuthorRepository(ISerializer serializer) {
-        super(serializer, (Map<String, Author>) serializer.deserialize());
+        super(serializer, Storage.INSTANCE.authors);
     }
 
 }
