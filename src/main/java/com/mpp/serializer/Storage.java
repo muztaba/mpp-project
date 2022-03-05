@@ -9,9 +9,9 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum Storage implements Serializable {
+public class Storage implements Serializable {
 
-    INSTANCE;
+//    INSTANCE;
 
     public Map<String, Book> books = new HashMap<>();
     public Map<String, Author> authors = new HashMap<>();

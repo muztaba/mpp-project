@@ -38,7 +38,7 @@ public class LibraryMemberController implements DomainController {
                 state,
                 zip);
         ValidatorFactory.getValidator(LibraryMember.class).validate(libraryMember);
-        return libraryMember;
+        return libraryMemberRepository.save(libraryMember);
     }
 
     public LibraryMember editLibraryMember(

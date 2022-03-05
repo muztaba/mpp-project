@@ -10,12 +10,13 @@ import com.mpp.utils.CommandParser;
 import com.mpp.utils.UIContext;
 
 import javax.naming.AuthenticationException;
+import java.io.File;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class LoginPage {
 
-    private static final String storageLocation = "storage/db.bin";
+    public static final String storageLocation = "storage/db.bin";
 
     public static void showUI(UIContext uiContext) {
         Scanner sc = uiContext.getSc();
@@ -23,7 +24,7 @@ public class LoginPage {
         System.out.println("type login to Login and exit for exit");
 
         var serializer = new StorageSerializer(storageLocation);
-        var storage = (Storage) serializer.deserialize();
+
 
         while (sc.hasNext()) {
             String cmd = sc.nextLine();
@@ -31,7 +32,9 @@ public class LoginPage {
 
             switch (command) {
                 case EXIT -> {
-                    break;
+                    new File(storageLocation).delete();
+                    serializer.serialize(ApplicationContext.storage);
+                    System.exit(0);
                 }
                 case LOGIN -> {
                     System.out.println("Please enter username");
@@ -60,7 +63,6 @@ public class LoginPage {
 
         }
 
-        serializer.serialize(storage);
     }
 
 

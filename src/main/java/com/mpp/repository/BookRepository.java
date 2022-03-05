@@ -4,11 +4,12 @@ import com.mpp.model.Book;
 import com.mpp.model.BookCopy;
 import com.mpp.serializer.ISerializer;
 import com.mpp.serializer.Storage;
+import com.mpp.utils.ApplicationContext;
 
 public class BookRepository extends Repository<Book> {
 
     BookRepository() {
-        super(Storage.INSTANCE.books);
+        super(ApplicationContext.storage.books);
     }
 
     public Book findByIsbn(String isbn) {
