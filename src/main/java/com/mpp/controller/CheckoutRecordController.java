@@ -40,6 +40,39 @@ public class CheckoutRecordController implements DomainController {
         return checkoutRecordRepository.save(checkoutRecord);
     }
 
+    public CheckoutRecord createOverdueCheckoutRecord(String libraryMemberId, String isbn) throws BookCopyNotAvailableException {
+        // get libraryMember by id
+        LibraryMember libraryMember = RepositoryFactory.libraryMemberRepository().findById(libraryMemberId);
+        // get book by isbn
+        Book book = RepositoryFactory.bookRepository().findByIsbn(isbn);
+        // check if a copy of the book is available
+        BookCopy bookCopy = RepositoryFactory.bookRepository().findFirstAvailableBookCopy(book);
+        if (bookCopy == null) {
+            throw new BookCopyNotAvailableException();
+        }
+        // create a CheckoutEntry
+        CheckoutEntry checkoutEntry = new CheckoutEntry(bookCopy, getOldDay(), getOldDueDate(book), ApplicationContext.getUser(), libraryMember);
+        // set availability to false to the bookCopy
+        bookCopy.setAvailable(false);
+        // create a checkoutRecord
+        CheckoutRecord checkoutRecord = new CheckoutRecord();
+        checkoutRecord.addCheckoutEntry(checkoutEntry);
+        return checkoutRecordRepository.save(checkoutRecord);
+    }
+    private Date getOldDay() {
+        LocalDate oldDate = LocalDate.of( 2022 , 1 , 15 );
+        return java.util.Date.from(oldDate.atStartOfDay()
+                .atZone(ZoneId.systemDefault())
+                .toInstant());
+    }
+    private Date getOldDueDate(Book book) {
+        LocalDate oldDate = LocalDate.of( 2022 , 1 , 15 );
+        LocalDate dueDate = oldDate.plusDays(book.getBorrowDurationInDays());
+        return java.util.Date.from(dueDate.atStartOfDay()
+                .atZone(ZoneId.systemDefault())
+                .toInstant());
+    }
+
     private Date getDueDate(Book book) {
         LocalDate today = LocalDate.now();
         LocalDate dueDate = today.plusDays(book.getBorrowDurationInDays());
