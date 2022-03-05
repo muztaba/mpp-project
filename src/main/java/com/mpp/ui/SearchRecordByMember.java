@@ -4,6 +4,7 @@ import com.mpp.controller.AuthenticationController;
 import com.mpp.controller.ControllerFactory;
 import com.mpp.controller.LibraryMemberController;
 import com.mpp.exception.ValidationException;
+import com.mpp.model.CheckoutEntry;
 import com.mpp.model.LibraryMember;
 import com.mpp.model.Role;
 import com.mpp.utils.UIContext;
@@ -21,7 +22,11 @@ public class SearchRecordByMember {
         String memberId = sc.nextLine();
 
         var checkoutEntries = libraryMemberController.getCheckoutEntriesByLibraryMember(memberId);
-        System.out.println(checkoutEntries);
+        for (CheckoutEntry e : checkoutEntries){
+            System.out.println(e);
+        }
+
+
     }
 
 }

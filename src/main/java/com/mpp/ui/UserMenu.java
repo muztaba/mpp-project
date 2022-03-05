@@ -59,13 +59,14 @@ public class UserMenu {
         Scanner sc = uiContext.getSc();
         CommandParser cp = uiContext.getCp();
         printDirections(user);
+
         while (sc.hasNext()) {
 
-            int cmd = Integer.parseInt(sc.nextLine());
 
             //TODO: need connect everything to the UI also make authentication as well
 
             try {
+                int cmd = Integer.parseInt(sc.nextLine());
                 //                        Get All library member
                 //                        Get All Books
                 //                        Get All Authors
@@ -159,6 +160,7 @@ public class UserMenu {
                 wrongInput.printStackTrace();
                 UserMenu.showUI(uiContext);
             } catch (Exception e) {
+                e.printStackTrace();
                 System.out.println("OOPS SOMETHING WENT WRONG!");
                 UserMenu.showUI(uiContext);
             } catch (BookCopyNotAvailableException bookCopyNotAvailableException){

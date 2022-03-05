@@ -1,9 +1,10 @@
 package com.mpp.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CheckoutRecord implements Identifiable {
+public class CheckoutRecord implements Serializable, Identifiable {
     private List<CheckoutEntry> checkoutEntries;
 
     public CheckoutRecord() {

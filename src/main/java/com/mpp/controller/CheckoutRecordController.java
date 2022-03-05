@@ -36,6 +36,7 @@ public class CheckoutRecordController implements DomainController {
         // create a checkoutRecord
         CheckoutRecord checkoutRecord = new CheckoutRecord();
         checkoutRecord.addCheckoutEntry(checkoutEntry);
+        libraryMember.setCheckoutRecord(checkoutRecord);
         return checkoutRecordRepository.save(checkoutRecord);
     }
 

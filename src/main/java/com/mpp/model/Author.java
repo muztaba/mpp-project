@@ -1,6 +1,8 @@
 package com.mpp.model;
 
-public class Author extends Person implements Identifiable {
+import java.io.Serializable;
+
+public class Author extends Person implements Identifiable, Serializable {
     private String bio;
 
     public Author(
