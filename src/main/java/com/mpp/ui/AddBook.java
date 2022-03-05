@@ -18,14 +18,8 @@ import java.util.Scanner;
 public class AddBook {
 
 
-    public static void showUI() throws ValidationException {
-        try {
-            ((AuthenticationController)ControllerFactory.getController(AuthenticationController.class)).hasPermission(ApplicationContext.getUser(), Role.ADMIN);
-        } catch (AccessDeniedException e) {
-            e.printStackTrace();
-            System.out.println("Access Denied! You have no Power Here!");
-            UserMenu.showUI(UIContext.getInstance());
-        }
+    public static void showUI() throws ValidationException , NumberFormatException{
+        ((AuthenticationController)ControllerFactory.getController(AuthenticationController.class)).authenticationHandler(Role.ADMIN);
 
         BookController bookController = (BookController) ControllerFactory.getController(Book.class);
         System.out.println("Please enter the title of the Book");
@@ -56,14 +50,8 @@ public class AddBook {
                 System.out.println("Wrong input!");
             }
         }
-        Book book = null;
-        try {
-            book = bookController.addNewBook(title, isbn, authorNames);
-        } catch (ValidationException validationException) {
-            validationException.printStackTrace();
-            System.out.println("Invalid Inputs! Please start from beginning!");
-            throw validationException;
-        }
+        Book book = bookController.addNewBook(title, isbn, authorNames);
+
         System.out.println("Added Book");
         System.out.println(book);
     }

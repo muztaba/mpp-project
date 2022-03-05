@@ -16,13 +16,7 @@ public class AddLibraryMember {
 
 
     public static void showUI() throws NumberFormatException, ValidationException {
-        try {
-            ((AuthenticationController)ControllerFactory.getController(AuthenticationController.class)).hasPermission(ApplicationContext.getUser(), Role.ADMIN);
-        } catch (AccessDeniedException e) {
-            e.printStackTrace();
-            System.out.println("Access Denied! You have no Power Here!");
-            UserMenu.showUI(UIContext.getInstance());
-        }
+        ((AuthenticationController) ControllerFactory.getController(AuthenticationController.class)).authenticationHandler(Role.ADMIN);
 
         LibraryMemberController libraryMemberController = (LibraryMemberController) ControllerFactory.getController(LibraryMember.class);
         System.out.println("Please enter first Name");

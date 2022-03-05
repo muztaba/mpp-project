@@ -17,13 +17,7 @@ import java.util.Scanner;
 
 public class EditLibraryMember {
     public static void showUI() throws ValidationException, NumberFormatException {
-        try {
-            ((AuthenticationController) ControllerFactory.getController(AuthenticationController.class)).hasPermission(ApplicationContext.getUser(), Role.ADMIN);
-        } catch (AccessDeniedException e) {
-            e.printStackTrace();
-            System.out.println("Access Denied! You have no Power Here!");
-            UserMenu.showUI(UIContext.getInstance());
-        }
+        ((AuthenticationController) ControllerFactory.getController(AuthenticationController.class)).authenticationHandler(Role.ADMIN);
 
         LibraryMemberController libraryMemberController = ControllerFactory.getLibraryMemberController();
 
