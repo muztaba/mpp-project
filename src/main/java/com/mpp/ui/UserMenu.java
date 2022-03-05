@@ -1,6 +1,7 @@
 package com.mpp.ui;
 
 import com.mpp.controller.*;
+import com.mpp.exception.BookCopyNotAvailableException;
 import com.mpp.exception.ValidationException;
 import com.mpp.model.*;
 import com.mpp.utils.*;
@@ -71,7 +72,6 @@ public class UserMenu {
                         SearchMember.showUI();
                         break;
                     case 5:
-
                         break;
                     case 6:
                         SearchBook.showUI();
@@ -85,8 +85,10 @@ public class UserMenu {
                     case 10:
                         break;
                     case 11:
+                        CheckoutBook.showUI();
                         break;
                     case 12:
+//                        Get All library member
                         Collection<LibraryMember> allLibraryMember = ((LibraryMemberController) ControllerFactory
                                 .getController(LibraryMember.class)).getAllMember();
                         for (LibraryMember libraryMember : allLibraryMember) {
@@ -94,6 +96,7 @@ public class UserMenu {
                         }
                         break;
                     case 13:
+//                        Get All Books
                         ((AuthenticationController) ControllerFactory.getController(AuthenticationController.class))
                                 .authorizationHandler(Role.LIBRARIAN);
                         Collection<Book> books = ((BookController) ControllerFactory
@@ -103,6 +106,7 @@ public class UserMenu {
                         }
                         break;
                     case 14:
+//                        Get All Authors
                         ((AuthenticationController) ControllerFactory.getController(AuthenticationController.class))
                                 .authorizationHandler(Role.LIBRARIAN);
                         Collection<Author> authors = ((AuthorController) ControllerFactory
@@ -126,6 +130,8 @@ public class UserMenu {
             } catch (Exception e) {
                 System.out.println("OOPS SOMETHING WENT WRONG!");
                 UserMenu.showUI(uiContext);
+            } catch (BookCopyNotAvailableException bookCopyNotAvailableException){
+                System.out.println("Book not found");
             }
             printDirections(user);
         }
