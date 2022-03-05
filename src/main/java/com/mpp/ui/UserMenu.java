@@ -92,10 +92,33 @@ public class UserMenu {
 
                         break;
                     case 8:
+                        float fineSum = 0.0f;
+                        var allOverDueBookList = ((CheckoutRecordController) ControllerFactory.getController(CheckoutRecord.class))
+                                .getAllOverdueEntries();
+
+                        for (var it : allOverDueBookList) {
+                            fineSum += it.getFine();
+//                            System.out.println(it);
+                        }
+                        System.out.println("Total fine = " + fineSum);
                         break;
                     case 9:
+                        var allCheckoutEntries = ((CheckoutRecordController) ControllerFactory.getController(CheckoutRecord.class))
+                                .getAllCheckoutEntries();
+
+                        for (var it : allCheckoutEntries) {
+//                            fineSum += it.getFine();
+                            System.out.println(it);
+                        }
                         break;
                     case 10:
+                        var allOverdueEntries = ((CheckoutRecordController) ControllerFactory.getController(CheckoutRecord.class))
+                                .getAllOverdueEntries();
+
+                        for (var it : allOverdueEntries) {
+//                            fineSum += it.getFine();
+                            System.out.println(it);
+                        }
                         break;
                     case 11:
                         CheckoutBook.showUI();
