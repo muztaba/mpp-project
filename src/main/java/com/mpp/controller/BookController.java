@@ -18,8 +18,8 @@ public class BookController implements DomainController {
         this.bookRepository = bookRepository;
     }
 
-    public Book addNewBook(String title, String isbn, List<String> authorNames) throws ValidationException {
-        Book book = new Book(UUID.randomUUID().toString(), title, isbn);
+    public Book addNewBook(String title, String isbn, Integer borrowDurationInDays, List<String> authorNames) throws ValidationException {
+        Book book = new Book(UUID.randomUUID().toString(), title, isbn, borrowDurationInDays);
         book.setAvailable(true);
         // get Author by author name and add to the book
         for (String authorName : authorNames) {
@@ -42,6 +42,8 @@ public class BookController implements DomainController {
     }
 
     public Book searchBookByIsbn(String isbn) {
-        return bookRepository.findById(isbn);
+        return bookRepository.findByIsbn(isbn);
     }
+
+
 }

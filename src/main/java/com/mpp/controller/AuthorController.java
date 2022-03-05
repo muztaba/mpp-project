@@ -12,10 +12,6 @@ public class AuthorController implements DomainController {
     private final AuthorRepository authorRepository;
 
     public Author getAuthorByName(String authorName) {
-        return authorRepository.findAll()
-                .stream()
-                .filter(it -> it.getFirstName().equals(authorName))
-                .findAny()
-                .orElse(null);
+        return authorRepository.findByFirstName(authorName);
     }
 }

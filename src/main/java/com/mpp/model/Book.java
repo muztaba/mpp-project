@@ -9,16 +9,26 @@ public class Book implements Serializable, Identifiable {
     private String id;
     private String isbn;
     private String title;
+    private Integer borrowDurationInDays;
     private List<Author> authors;
     private List<BookCopy> copies;
     private Boolean isAvailable;
 
-    public Book(String id, String title, String isbn) {
+    public Book(String id, String title, String isbn, Integer borrowDurationInDays) {
         this.id = id;
         this.title = title;
         this.isbn = isbn;
+        this.borrowDurationInDays = borrowDurationInDays;
         authors = new ArrayList<>();
         copies = new ArrayList<>();
+    }
+
+    public Integer getBorrowDurationInDays() {
+        return borrowDurationInDays;
+    }
+
+    public void setBorrowDurationInDays(Integer borrowDurationInDays) {
+        this.borrowDurationInDays = borrowDurationInDays;
     }
 
     public String getId() {

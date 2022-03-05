@@ -2,6 +2,7 @@ package com.mpp.controller;
 
 import com.mpp.model.Author;
 import com.mpp.model.Book;
+import com.mpp.model.CheckoutRecord;
 import com.mpp.model.LibraryMember;
 import com.mpp.repository.RepositoryFactory;
 
@@ -17,7 +18,8 @@ public final class ControllerFactory {
             Book.class, new BookController(RepositoryFactory.bookRepository()),
             LibraryMember.class, new LibraryMemberController(RepositoryFactory.libraryMemberRepository()),
             Author.class, new AuthorController(RepositoryFactory.authorRepository()),
-            AuthenticationController.class, new AuthenticationController()
+            AuthenticationController.class, new AuthenticationController(),
+            CheckoutRecord.class, new CheckoutRecordController(RepositoryFactory.checkoutRecordRepository())
     );
 
     private ControllerFactory() {
