@@ -70,6 +70,14 @@ public class CheckoutRecordController implements DomainController {
                 .toList();
     }
 
+    public List<Book> getAllOverDueBooks() {
+        return getAllCheckoutEntries()
+                .stream()
+                .map(CheckoutEntry::getBookCopy)
+                .map(BookCopy::getBook)
+                .toList();
+    }
+
     public CheckoutEntry findLibraryMemberByBookCopy(String bookCopyId) {
         for (CheckoutRecord r : checkoutRecordRepository.findAll()) {
             for (CheckoutEntry e : r.getCheckoutEntries()) {

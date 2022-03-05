@@ -4,7 +4,9 @@ import com.mpp.controller.*;
 import com.mpp.exception.BookCopyNotAvailableException;
 import com.mpp.exception.ValidationException;
 import com.mpp.model.*;
-import com.mpp.utils.*;
+import com.mpp.utils.ApplicationContext;
+import com.mpp.utils.CommandParser;
+import com.mpp.utils.UIContext;
 
 import java.util.Collection;
 import java.util.Scanner;
@@ -72,11 +74,22 @@ public class UserMenu {
                         SearchMember.showUI();
                         break;
                     case 5:
+                        SearchRecordByMember.showUI();
                         break;
                     case 6:
                         SearchBook.showUI();
                         break;
                     case 7:
+                        float sum = 0.0f;
+                        var allOverDueBooks = ((CheckoutRecordController) ControllerFactory.getController(CheckoutRecord.class))
+                                .getAllOverdueEntries();
+
+                        for (var it : allOverDueBooks) {
+                            sum += it.getFine();
+                            System.out.println(it);
+                        }
+                        System.out.println("Total fine = " + sum);
+
                         break;
                     case 8:
                         break;

@@ -65,4 +65,16 @@ public class CheckoutEntry {
     public void setFine(float fine) {
         this.fine = fine;
     }
+
+    @Override
+    public String toString() {
+        return "CheckoutEntry{" +
+                "bookCopy=" + bookCopy +
+                ", checkoutDate=" + checkoutDate +
+                ", dueDate=" + dueDate +
+                ", checkoutBy=" + checkoutBy +
+                ", borrowedBy=" + borrowedBy +
+                ", fine=" + fine +
+                '}';
+    }
 }

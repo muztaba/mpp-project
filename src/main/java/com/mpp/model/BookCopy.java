@@ -53,4 +53,15 @@ public class BookCopy implements Serializable, Identifiable {
     public String getID() {
         return getId();
     }
+
+    @Override
+    public String toString() {
+        return "BookCopy{" +
+                "id='" + id + '\'' +
+                ", book name=" + book.getTitle() +
+                ", book ISBN=" + book.getIsbn() +
+                ", copyNumber=" + copyNumber +
+                ", isAvailable=" + isAvailable +
+                '}';
+    }
 }

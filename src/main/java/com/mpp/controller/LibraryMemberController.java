@@ -70,9 +70,6 @@ public class LibraryMemberController implements DomainController {
         return libraryMemberRepository.findAll();
     }
 
-
-
-
     public List<CheckoutEntry> getCheckoutEntriesByLibraryMember(String id) {
         LibraryMember libraryMember = libraryMemberRepository.findById(id);
         return libraryMember.getCheckoutRecord().getCheckoutEntries();
