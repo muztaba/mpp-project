@@ -14,7 +14,7 @@ public class SearchMember {
         ((AuthenticationController) ControllerFactory.getController(AuthenticationController.class))
                 .authorizationHandler(Role.LIBRARIAN);
 
-        LibraryMemberController libraryMemberController = (LibraryMemberController) ControllerFactory.getController(LibraryMemberController.class);
+        LibraryMemberController libraryMemberController = (LibraryMemberController) ControllerFactory.getController(LibraryMember.class);
         Scanner sc = UIContext.getInstance().getSc();
         System.out.println("Please enter the member ID");
         String memberUUID = sc.nextLine();
