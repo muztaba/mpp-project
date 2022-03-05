@@ -36,9 +36,9 @@ public class LibraryMember extends Person implements Identifiable {
     @Override
     public String toString() {
         return "LibraryMember{" +
-                "uuid : " + this.getID() +
-                "\ncheckoutRecord=" + checkoutRecord +
-                "\nPerson=" + super.toString() +
+                "\n| uuid : " + this.getID() +
+                "| checkoutRecord=" + checkoutRecord +
+                "| Person=" + super.toString() +
                 '}';
     }
 }

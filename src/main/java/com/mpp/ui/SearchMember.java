@@ -11,8 +11,8 @@ import java.util.Scanner;
 
 public class SearchMember {
     public static void showUI() {
-        ((AuthenticationController) ControllerFactory.getController(AuthenticationController.class))
-                .authorizationHandler(Role.LIBRARIAN);
+//        ((AuthenticationController) ControllerFactory.getController(AuthenticationController.class))
+//                .authorizationHandler(Role.LIBRARIAN);
 
         LibraryMemberController libraryMemberController = (LibraryMemberController) ControllerFactory.getController(LibraryMember.class);
         Scanner sc = UIContext.getInstance().getSc();

@@ -7,6 +7,7 @@ import com.mpp.model.BookCopy;
 import com.mpp.repository.BookRepository;
 import com.mpp.validation.ValidatorFactory;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -46,4 +47,7 @@ public class BookController implements DomainController {
     }
 
 
+    public Collection<Book> getAllBooks() {
+        return bookRepository.findAll();
+    }
 }

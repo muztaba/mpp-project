@@ -49,10 +49,10 @@ public class Person implements Serializable, Identifiable {
     @Override
     public String toString() {
         return "Person{" +
-                "\nfirstName='" + firstName + '\'' +
-                ", \nlastName='" + lastName + '\'' +
-                ", \naddress=" + address +
-                ", \nphone=" + phone +
+                "| firstName='" + firstName + '\'' +
+                "| lastName='" + lastName + '\'' +
+                "| address=" + address +
+                "| phone=" + phone +
                 '}';
     }
 
