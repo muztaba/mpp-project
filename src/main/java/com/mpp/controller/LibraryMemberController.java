@@ -2,11 +2,14 @@ package com.mpp.controller;
 
 import com.mpp.exception.ValidationException;
 import com.mpp.model.Address;
+import com.mpp.model.CheckoutEntry;
+import com.mpp.model.CheckoutRecord;
 import com.mpp.model.LibraryMember;
 import com.mpp.repository.LibraryMemberRepository;
 import com.mpp.repository.RepositoryFactory;
 import com.mpp.validation.ValidatorFactory;
 
+import java.util.List;
 import java.util.UUID;
 
 public class LibraryMemberController implements DomainController {
@@ -58,5 +61,10 @@ public class LibraryMemberController implements DomainController {
 
     public LibraryMember searchMemberByID(String id) {
         return libraryMemberRepository.findById(id);
+    }
+
+    public List<CheckoutEntry> getCheckoutEntriesByLibraryMember(String id) {
+        LibraryMember libraryMember = libraryMemberRepository.findById(id);
+        return libraryMember.getCheckoutRecord().getCheckoutEntries();
     }
 }
