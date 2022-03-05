@@ -32,6 +32,8 @@ public class LibraryMember extends Person implements Identifiable {
         return id;
     }
 
+    public void setID(String id){ this.id = id;}
+
 
     @Override
     public String toString() {

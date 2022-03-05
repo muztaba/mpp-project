@@ -1,9 +1,7 @@
 package com.mpp;
 
-import com.mpp.controller.AuthorController;
-import com.mpp.controller.BookController;
-import com.mpp.controller.ControllerFactory;
-import com.mpp.controller.LibraryMemberController;
+import com.mpp.controller.*;
+import com.mpp.exception.BookCopyNotAvailableException;
 import com.mpp.model.*;
 import com.mpp.serializer.Storage;
 import com.mpp.serializer.StorageSerializer;
@@ -12,6 +10,7 @@ import com.mpp.utils.ApplicationContext;
 import com.mpp.utils.CommandParser;
 import com.mpp.utils.UIContext;
 
+import java.lang.reflect.Member;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -34,6 +33,7 @@ public class App {
         AuthorController authorController = (AuthorController) ControllerFactory.getController(Author.class);
         BookController bookController = (BookController) ControllerFactory.getController(Book.class);
         LibraryMemberController libraryMemberController = (LibraryMemberController) ControllerFactory.getController(LibraryMember.class);
+        CheckoutRecordController checkoutRecordController = (CheckoutRecordController)ControllerFactory.getController(CheckoutRecord.class);
         try {
             authorController.createAuthor("dan", "Brown", 1234567890, "rasta",
                     "shohor", "rastro", 52557, "Good Writer");
@@ -41,9 +41,16 @@ public class App {
                     "fairfeild", "iowa", 52556, "Ok Writer");
             bookController.addNewBook("Inferno", "1234", 7, List.of("dan"));
             bookController.addNewBook("Not Inferno", "1235", 21, List.of("paul"));
-            libraryMemberController.createLibraryMember("Uzbuk", "Jolil", 123456, "street", "city", "state", 555555);
-            libraryMemberController.createLibraryMember("Harami", "lname", 54321678, "street", "city", "state", 22222);
-        } catch (Exception e) {
+            LibraryMember member1 = libraryMemberController.createLibraryMember("Uzbuk", "Jolil",
+                    123456, "street", "city", "state", 555555);
+            LibraryMember member2 = libraryMemberController.createLibraryMember("Harami", "lname",
+                    54321678, "street", "city", "state", 22222);
+            member1.setID("1234");
+            member2.setID("1235");
+            checkoutRecordController.checkOutBooksForLibraryMembers("1234","1234");
+            checkoutRecordController.checkOutBooksForLibraryMembers("1235","1235");
+
+        } catch (Exception | BookCopyNotAvailableException e) {
             System.out.println("Matha Karap!");
         }
 
