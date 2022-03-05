@@ -16,8 +16,8 @@ import java.util.Scanner;
 public class AddBook {
 
 
-    public static void showUI() throws ValidationException , NumberFormatException{
-        ((AuthenticationController)ControllerFactory.getController(AuthenticationController.class)).authorizationHandler(Role.ADMIN);
+    public static void showUI() throws ValidationException, NumberFormatException {
+        ((AuthenticationController) ControllerFactory.getController(AuthenticationController.class)).authorizationHandler(Role.ADMIN);
 
         BookController bookController = (BookController) ControllerFactory.getController(Book.class);
         System.out.println("Please enter the title of the Book");
@@ -50,7 +50,7 @@ public class AddBook {
                 System.out.println("Wrong input!");
             }
         }
-        Book book = bookController.addNewBook(title, isbn, authorNames);
+        Book book = bookController.addNewBook(title, isbn, borrowDurationInDays, authorNames);
 
         System.out.println("Added Book");
         System.out.println(book);
