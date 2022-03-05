@@ -39,16 +39,16 @@ public class App {
                     "shohor", "rastro", 52557, "Good Writer");
             authorController.createAuthor("paul", "Brown", 1234567890, "1000 n",
                     "fairfeild", "iowa", 52556, "Ok Writer");
-            bookController.addNewBook("Inferno", "1234", 7, List.of("dan"));
-            bookController.addNewBook("Not Inferno", "1235", 2, List.of("paul"));
+            Book book1 = bookController.addNewBook("Inferno", "1234", 7, List.of("dan"));
+            Book book2 = bookController.addNewBook("Not Inferno", "1235", 2, List.of("paul"));
             LibraryMember member1 = libraryMemberController.createLibraryMember("Uzbuk", "Jolil",
                     123456, "street", "city", "state", 555555);
             LibraryMember member2 = libraryMemberController.createLibraryMember("Harami", "lname",
                     54321678, "street", "city", "state", 22222);
-            member1.setID("1234");
-            member2.setID("1235");
-            checkoutRecordController.createOverdueCheckoutRecord("1234","1234");
-            checkoutRecordController.createOverdueCheckoutRecord("1235","1235");
+//            member1.setID("1234");
+//            member2.setID("1235");
+            checkoutRecordController.createOverdueCheckoutRecord(member1.getID(),book1.getIsbn());
+            checkoutRecordController.createOverdueCheckoutRecord(member2.getID(),book2.getIsbn());
 
         } catch (Exception | BookCopyNotAvailableException e) {
             System.out.println("Matha Karap!");

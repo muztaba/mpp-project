@@ -94,7 +94,7 @@ public class CheckoutRecordController implements DomainController {
                 .flatMap(it -> it.getCheckoutEntries().stream())
                 .filter(it -> {
                     Date dueDate = it.getDueDate();
-                    return new Date().before(dueDate);
+                    return dueDate.before(new Date());
                 })
                 .peek(it -> {
                     Date dueDate = it.getDueDate();
