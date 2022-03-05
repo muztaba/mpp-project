@@ -50,10 +50,11 @@ public class Address implements Serializable {
     @Override
     public String toString() {
         return "Address{" +
-                "street='" + street + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", zip=" + zip +
+                "| street='" + street + '\'' +
+                "| city='" + city + '\'' +
+                "| state='" + state + '\'' +
+                "| zip=" + zip +
                 '}';
     }
+
 }

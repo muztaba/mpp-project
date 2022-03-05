@@ -49,10 +49,10 @@ public class Person implements Serializable, Identifiable {
     @Override
     public String toString() {
         return "Person{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", address=" + address +
-                ", phone=" + phone +
+                "| firstName='" + firstName + '\'' +
+                "| lastName='" + lastName + '\'' +
+                "| address=" + address +
+                "| phone=" + phone +
                 '}';
     }
 

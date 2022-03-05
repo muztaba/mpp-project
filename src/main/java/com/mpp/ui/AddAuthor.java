@@ -1,24 +1,22 @@
 package com.mpp.ui;
 
 import com.mpp.controller.AuthenticationController;
+import com.mpp.controller.AuthorController;
 import com.mpp.controller.ControllerFactory;
-import com.mpp.controller.LibraryMemberController;
 import com.mpp.exception.ValidationException;
+import com.mpp.model.Author;
 import com.mpp.model.LibraryMember;
 import com.mpp.model.Role;
-import com.mpp.utils.ApplicationContext;
 import com.mpp.utils.UIContext;
 
-import java.nio.file.AccessDeniedException;
 import java.util.Scanner;
 
-public class AddLibraryMember {
+public class AddAuthor {
+    public static void showUI() throws ValidationException {
+        ((AuthenticationController) ControllerFactory.getController(AuthenticationController.class))
+                .authorizationHandler(Role.LIBRARIAN);
 
-
-    public static void showUI() throws ValidationException,NumberFormatException {
-        ((AuthenticationController)ControllerFactory.getController(AuthenticationController.class)).authorizationHandler(Role.ADMIN);
-
-        LibraryMemberController libraryMemberController = (LibraryMemberController) ControllerFactory.getController(LibraryMember.class);
+        AuthorController authorController = (AuthorController) ControllerFactory.getController(Author.class);
         System.out.println("Please enter first Name");
         Scanner sc = UIContext.getInstance().getSc();
         String fname = sc.nextLine();
@@ -34,10 +32,12 @@ public class AddLibraryMember {
         String state = sc.nextLine();
         System.out.println("Please enter zip");
         int zip = Integer.parseInt(sc.nextLine());
+        System.out.println("Please enter Author bio");
+        String  bio = sc.nextLine();
 
 
-        LibraryMember libraryMember = libraryMemberController.createLibraryMember(fname,lname,phoneNumber,street,city,state,zip);
-        System.out.println("Added New Library Member");
-        System.out.println(libraryMember);
+        Author author = authorController.createAuthor(fname,lname,phoneNumber,street,city,state,zip,bio);
+        System.out.println("Added New Author");
+        System.out.println(author);
     }
 }

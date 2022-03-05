@@ -3,6 +3,24 @@ package com.mpp.model;
 public class Author extends Person implements Identifiable {
     private String bio;
 
+    public Author(
+            String id,
+            String firstName,
+            String lastName,
+            Integer phone,
+            String street,
+            String city,
+            String state,
+            Integer zip,
+            String bio) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.address = new Address(street, city, state, zip);
+        this.bio = bio;
+    }
+
     public String getBio() {
         return bio;
     }
@@ -19,10 +37,10 @@ public class Author extends Person implements Identifiable {
     @Override
     public String toString() {
         return "Author{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", address=" + address +
-                ", phone=" + phone +
+                "\nfirstName='" + firstName + '\'' +
+                ", \nlastName='" + lastName + '\'' +
+                ", \naddress=" + address +
+                ", \nphone=" + phone +
                 '}';
     }
 }

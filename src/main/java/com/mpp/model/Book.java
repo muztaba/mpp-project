@@ -96,11 +96,11 @@ public class Book implements Serializable, Identifiable {
     @Override
     public String toString() {
         return "Book{" +
-                "isbn='" + isbn + '\'' +
-                ", title='" + title + '\'' +
-                ", authors=" + authors.toString() +
-                ", copies=" + copies +
-                ", isAvailable=" + isAvailable +
+                "\nisbn='" + isbn + '\'' +
+                ", \ntitle='" + title + '\'' +
+                ", \nauthors=" + authors.toString() +
+                ", \ncopies=" + copies +
+                ", \nisAvailable=" + isAvailable +
                 '}';
     }
 }

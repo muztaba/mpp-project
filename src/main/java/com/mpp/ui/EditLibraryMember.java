@@ -6,21 +6,27 @@ import com.mpp.controller.LibraryMemberController;
 import com.mpp.exception.ValidationException;
 import com.mpp.model.LibraryMember;
 import com.mpp.model.Role;
-import com.mpp.utils.ApplicationContext;
 import com.mpp.utils.UIContext;
 
-import java.nio.file.AccessDeniedException;
+import java.util.Collection;
 import java.util.Scanner;
 
-public class AddLibraryMember {
+public class EditLibraryMember {
+    public static void showUI() throws ValidationException, NumberFormatException {
+        ((AuthenticationController) ControllerFactory.getController(AuthenticationController.class)).authorizationHandler(Role.ADMIN);
+
+        LibraryMemberController libraryMemberController = ControllerFactory.getLibraryMemberController();
+
+        Collection<LibraryMember> allLibraryMember = libraryMemberController.getAllMember();
+        for (LibraryMember libraryMember : allLibraryMember) {
+            System.out.println(libraryMember);
+        }
 
 
-    public static void showUI() throws ValidationException,NumberFormatException {
-        ((AuthenticationController)ControllerFactory.getController(AuthenticationController.class)).authorizationHandler(Role.ADMIN);
-
-        LibraryMemberController libraryMemberController = (LibraryMemberController) ControllerFactory.getController(LibraryMember.class);
-        System.out.println("Please enter first Name");
+        System.out.println("Please enter the Library Member You want to Edit!");
         Scanner sc = UIContext.getInstance().getSc();
+        String library_uuid = sc.nextLine();
+        System.out.println("Please enter first Name");
         String fname = sc.nextLine();
         System.out.println("Please enter Last Name");
         String lname = sc.nextLine();
@@ -35,9 +41,8 @@ public class AddLibraryMember {
         System.out.println("Please enter zip");
         int zip = Integer.parseInt(sc.nextLine());
 
+        libraryMemberController.editLibraryMember(library_uuid, fname, lname, phoneNumber, street, city, state, zip);
 
-        LibraryMember libraryMember = libraryMemberController.createLibraryMember(fname,lname,phoneNumber,street,city,state,zip);
-        System.out.println("Added New Library Member");
-        System.out.println(libraryMember);
+
     }
 }
