@@ -48,7 +48,7 @@ public class App {
 //            member1.setID("1234");
 //            member2.setID("1235");
             checkoutRecordController.createOverdueCheckoutRecord(member1.getID(),book1.getIsbn());
-            checkoutRecordController.createOverdueCheckoutRecord(member2.getID(),book2.getIsbn());
+            checkoutRecordController.createOverdueCheckoutRecord(member1.getID(),book2.getIsbn());
 
         } catch (Exception | BookCopyNotAvailableException e) {
             System.out.println("Matha Karap!");

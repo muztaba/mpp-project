@@ -164,7 +164,7 @@ public class UserMenu {
                 System.out.println("OOPS SOMETHING WENT WRONG!");
                 UserMenu.showUI(uiContext);
             } catch (BookCopyNotAvailableException bookCopyNotAvailableException){
-                System.out.println("Book not found");
+                System.out.println("Book not Available");
             }
             printDirections(user);
         }

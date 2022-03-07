@@ -34,7 +34,7 @@ public class CheckoutRecordController implements DomainController {
         // set availability to false to the bookCopy
         bookCopy.setAvailable(false);
         // create a checkoutRecord
-        CheckoutRecord checkoutRecord = new CheckoutRecord();
+        CheckoutRecord checkoutRecord = libraryMember.getCheckoutRecord() == null ? new CheckoutRecord() : libraryMember.getCheckoutRecord();
         checkoutRecord.addCheckoutEntry(checkoutEntry);
         libraryMember.setCheckoutRecord(checkoutRecord);
         return checkoutRecordRepository.save(checkoutRecord);
@@ -55,8 +55,9 @@ public class CheckoutRecordController implements DomainController {
         // set availability to false to the bookCopy
         bookCopy.setAvailable(false);
         // create a checkoutRecord
-        CheckoutRecord checkoutRecord = new CheckoutRecord();
+        CheckoutRecord checkoutRecord = libraryMember.getCheckoutRecord() == null ? new CheckoutRecord() : libraryMember.getCheckoutRecord();
         checkoutRecord.addCheckoutEntry(checkoutEntry);
+        libraryMember.setCheckoutRecord(checkoutRecord);
         return checkoutRecordRepository.save(checkoutRecord);
     }
     private Date getOldDay() {
